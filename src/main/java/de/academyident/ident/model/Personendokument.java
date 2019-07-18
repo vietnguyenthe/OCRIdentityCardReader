@@ -31,6 +31,7 @@ public class Personendokument {
     private boolean dokumentIstEcht = false;
     private boolean bestaetigtRealePerson = false; // Zweite Prüfung mit "externer" DB
 
+
     public int getId() {
         return id;
     }

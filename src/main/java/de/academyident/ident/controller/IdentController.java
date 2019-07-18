@@ -13,15 +13,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class IdentController {
 
     @Autowired
     private PersonendokumentRepo personendokumentRepo;
-
     @Autowired
     private BundesDatenbankRepo bundesDatenbankRepo;
+
+
+    @GetMapping (value = "/")
+    public String eingabeFormularAnzeigen(Model model) {
+
+        model.addAttribute("neueDokumentDaten", new Personendokument());
+
+        return "startseite";
+    }
 
     @GetMapping(value = "/ergebnisAnzeigen")
     public String ergebnisAnzeigen(Model model,
@@ -36,8 +46,17 @@ public class IdentController {
         }
     }
 
+    @PostMapping(value = "/datenUebergabe")
+    public String datenAnnahmeUndValidierung(Model model,
+                                             @ModelAttribute("neueDokumentDaten") Personendokument dokument) {
 
-
+        if (Validierung.pruefeAusweisEchtheit(dokument)) {
+            dokument.setDokumentIstEcht(true);
+            return "/"; //TODO Methode zum Wechsel auf dritte View hier einfügen
+        } else {
+            return "redirect: /"; //TODO: BONUS: Bei false zurück auf die erste View mit Fehlermeldung
+        }
+    }
     /*
      * TODO: "/Echtheitsmerkmalpruefung"
      * TODO: Im Controller das von der View befüllte Model abrufen
@@ -53,6 +72,8 @@ public class IdentController {
      * TODO: Bei true wird die nächste View aufgerufen und das Model übergeben
      * TODO: BONUS: Bei false Fehlermeldung anzeigen.
      *  */
+
+
 
 
     //////////                                                   \\\\\\\\\\

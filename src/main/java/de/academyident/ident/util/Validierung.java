@@ -10,9 +10,7 @@ public class Validierung {
 
     public static boolean pruefeAusweisEchtheit(Personendokument dokument) {
 
-        //TODO: Echtheitsmerkmal abgleichen und entsprechenden boolean zurückgeben
-
-        return true;
+        return dokument.getEchtheitsMerkmal().equals("Personalausweis");
     }
 
         //TODO: Datenbankanbindung mit "Drittdatenbank" herstellen aka. Bundesamt für Bürger?
