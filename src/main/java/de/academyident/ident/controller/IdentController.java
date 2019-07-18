@@ -1,10 +1,14 @@
 package de.academyident.ident.controller;
 
+import de.academyident.ident.model.Personendokument;
 import de.academyident.ident.repository.PersonendokumentRepo;
+import de.academyident.ident.util.Validierung;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class IdentController {
@@ -12,19 +16,26 @@ public class IdentController {
     @Autowired
     private PersonendokumentRepo personendokumentRepo;
 
+
     @GetMapping (value = "/")
     public String eingabeFormularAnzeigen(Model model) {
 
-        /*
-         * TODO: "/"-Aufrufmethode erstellen
-         * TODO: Personendokument als Model erstellen
-         * TODO: Auf Startseite wechseln und Model übergeben (Modelattributes siehe Webblog
-         */
+        model.addAttribute("neueDokumentDaten", new Personendokument());
 
-        return "Irgeneine Seite";
+        return "startseite";
     }
 
+    @PostMapping(value = "/datenUebergabe")
+    public String datenAnnahmeUndValidierung(Model model,
+                                             @ModelAttribute("neueDokumentDaten") Personendokument dokument) {
 
+            if (Validierung.pruefeAusweisEchtheit(dokument)) {
+                dokument.setDokumentIstEcht(true);
+                return "/"; //TODO Methode zum Wechsel auf dritte View hier einfügen
+            } else {
+                return "redirect: /"; //TODO: BONUS: Bei false zurück auf die erste View mit Fehlermeldung
+            }
+    }
 
     /*
      * TODO: "/Echtheitsmerkmalpruefung"

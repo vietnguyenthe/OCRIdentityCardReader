@@ -7,9 +7,7 @@ public class Validierung {
 
     public static boolean pruefeAusweisEchtheit(Personendokument dokument) {
 
-        //TODO: Echtheitsmerkmal abgleichen und entsprechenden boolean zurückgeben
-
-        return true;
+        return dokument.getEchtheitsMerkmal().equals("Personalausweis");
     }
 
     public static boolean pruefeObRealePerson(Personendokument dokument) {
