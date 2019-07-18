@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class Personendokument {
+public class BundesDatenbank {
 
     @Id
     @GeneratedValue

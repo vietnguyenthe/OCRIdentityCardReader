@@ -1,10 +1,18 @@
 package de.academyident.ident.controller;
 
+import de.academyident.ident.model.BundesDatenbank;
+import de.academyident.ident.model.Personendokument;
+import de.academyident.ident.repository.BundesDatenbankRepo;
 import de.academyident.ident.repository.PersonendokumentRepo;
+import de.academyident.ident.util.Validierung;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class IdentController {
@@ -12,16 +20,20 @@ public class IdentController {
     @Autowired
     private PersonendokumentRepo personendokumentRepo;
 
-    @GetMapping (value = "/")
-    public String eingabeFormularAnzeigen(Model model) {
+    @Autowired
+    private BundesDatenbankRepo bundesDatenbankRepo;
 
-        /*
-         * TODO: "/"-Aufrufmethode erstellen
-         * TODO: Personendokument als Model erstellen
-         * TODO: Auf Startseite wechseln und Model übergeben (Modelattributes siehe Webblog
-         */
-
-        return "Irgeneine Seite";
+    @GetMapping(value = "/ergebnisAnzeigen")
+    public String ergebnisAnzeigen(Model model,
+                                   @ModelAttribute("neueDokumentdaten") Personendokument dokument) {
+        List<BundesDatenbank> bundesDatenbank = new ArrayList<>();
+        bundesDatenbank = bundesDatenbankRepo.findAll();
+        if(Validierung.pruefeObRealePerson(dokument, bundesDatenbank)){
+            return "ergebnis";
+        }else{
+            //hier muss noch auf eine Alternativseite verlinkt werden, falls der Datenbankabgleich negativ ist
+            return "startseite";
+        }
     }
 
 
@@ -41,8 +53,6 @@ public class IdentController {
      * TODO: Bei true wird die nächste View aufgerufen und das Model übergeben
      * TODO: BONUS: Bei false Fehlermeldung anzeigen.
      *  */
-
-
 
 
     //////////                                                   \\\\\\\\\\

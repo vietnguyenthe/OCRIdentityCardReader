@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Ergebnis</title>
@@ -22,6 +22,17 @@
 </head>
 <body>
 <div align="center"><img src="../img/Richtig-Symbol.png"></div>
-<h2>Viel Dank</h2>
+<h2>Viel Dank, die Validierung war erfolgreich!</h2>
+<table>
+    <tr>
+        <th>Vorname</th>
+        <th>Nachname</th>
+    </tr>
+    <tr>
+        <td th:text="${dokument.vorname}"/>
+        <td th:text="${dokument.nachname}"/>
+        </tr>
+</table>
+
 </body>
 </html>
