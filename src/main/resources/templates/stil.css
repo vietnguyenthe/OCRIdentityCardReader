@@ -1,0 +1,21 @@
+h1, h2{ justify-content: center;
+    text-align: center;
+}
+
+input[type=text], input[type=submit], input[type=file]{
+    align-items: center;
+    justify-items: center;
+    margin-bottom: 10px;
+
+}
+
+textarea{
+    height: 170px;
+    text-align: center;
+    justify-content: center;
+}
+
+img{
+ width: 200px;
+    height: 200px;
+}
