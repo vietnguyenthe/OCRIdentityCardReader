@@ -34,19 +34,6 @@ public class IdentController {
         return "startseite";
     }
 
-    @GetMapping(value = "/ergebnisAnzeigen")
-    public String ergebnisAnzeigen(Model model,
-                                   @ModelAttribute("neueDokumentDaten") Personendokument dokument) {
-        List<BundesDatenbank> bundesDatenbank = new ArrayList<>();
-        bundesDatenbank = bundesDatenbankRepo.findAll();
-        if(Validierung.pruefeObRealePerson(dokument, bundesDatenbank)){
-            return "ergebnis";
-        }else{
-            //hier muss noch auf eine Alternativseite verlinkt werden, falls der Datenbankabgleich negativ ist
-            return "startseite";
-        }
-    }
-
     @PostMapping(value = "/datenUebergabe")
     public String datenAnnahmeUndValidierung(Model model,
                                              @ModelAttribute("neueDokumentDaten") Personendokument dokument) {
@@ -56,6 +43,19 @@ public class IdentController {
             return "prasentation"; //TODO Methode zum Wechsel auf dritte View hier einfügen
         } else {
             return "redirect: /"; //TODO: BONUS: Bei false zurück auf die erste View mit Fehlermeldung
+        }
+    }
+
+    @PostMapping(value = "/ergebnisAnzeigen")
+    public String ergebnisAnzeigen(Model model,
+                                   @ModelAttribute("neueDokumentDaten") Personendokument dokument) {
+        List<BundesDatenbank> bundesDatenbank = new ArrayList<>();
+        bundesDatenbank = bundesDatenbankRepo.findAll();
+        if(Validierung.pruefeObRealePerson(dokument, bundesDatenbank)){
+            return "ergebnis";
+        }else{
+            //hier muss noch auf eine Alternativseite verlinkt werden, falls der Datenbankabgleich negativ ist
+            return "startseite";
         }
     }
     /*
