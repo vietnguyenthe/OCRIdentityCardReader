@@ -22,6 +22,17 @@
 </head>
 <body>
 <div class="container">
+    <div class="form-row justify-content-center align-items-center">
+        <div class="form-group col-auto">
+            <div class="centerItem"><img src="../img/EasyIdentLogo.png" height="150" width="150"
+                                         alt="Indent"/></div>
+            <br>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
 
     <form th:action="@{/ergebnisAnzeigen}"
           th:object="${neueDokumentDaten}" method="post">
@@ -70,16 +81,15 @@
 
 <div class="container">
     <hr/>
-
-    <!--FOOTER-->
     <footer class="footer">
 
         <div class="row justify-content-center align-items-center">
-            <span class="text-muted firaTextHighlight"><a href="startseite.html">Impressum</a></span>
+            <a href="startseite.html">Impressum</a>
         </div>
         <div class="row justify-content-center align-items-center">
             <p>Copyright © 2019 Ident</p>
         </div>
     </footer>
+</div>
 </body>
 </html>

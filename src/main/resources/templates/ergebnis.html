@@ -21,18 +21,34 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div align="center"><img src="../img/Richtig-Symbol.png"></div>
-<h2>Viel Dank, die Validierung war erfolgreich!</h2>
-<table>
-    <tr>
-        <th>Vorname</th>
-        <th>Nachname</th>
-    </tr>
-    <tr>
-        <td th:text="${neueDokumentDaten.vorname}"/>
-        <td th:text="${neueDokumentDaten.nachname}"/>
-        </tr>
-</table>
+<div class="container fullpage">
+    <div class="row justify-content-center align-items-center">
+        <div class="form-group col-auto">
+            <div class="centerItem"><img src="../img/EasyIdentLogo.png" height="150" width="150"
+                                         alt="Indent"/></div>
+            <br>
+            <div class="centerItem">
+                <h2>Vielen Dank <span class="confirmationText" th:text="*{neueDokumentDaten.vorname}"></span>!</h2>
+            </div>
+            <p>Deine Daten wurden erfolgreich validiert und abgespeichert. Unser Team wir sich zeitnah bei dir melden,
+            um den nächsten Schritt einzuleiten.</p>
+        </div>
+    </div>
+    <div class="row align-self-center">
+        <div class="col-md-12">
+            <hr/>
+            <footer class="footer">
+
+                <div class="row justify-content-center align-items-center">
+                    <a href="startseite.html">Impressum</a>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                    <p>Copyright © 2019 Ident</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
