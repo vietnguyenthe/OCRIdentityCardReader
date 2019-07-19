@@ -40,10 +40,16 @@ public class IdentController {
 
         if (Validierung.pruefeAusweisEchtheit(dokument)) {
             dokument.setDokumentIstEcht(true);
-            return "prasentation";
+            return "pruefung";
         } else {
             return "startseite";
         }
+    }
+
+//    Methode führt zu Pres
+    @PostMapping(value="/datenBearbeiten")
+    public String bearbeiteDaten(Model model){
+        return "presentation";
     }
 
     @PostMapping(value = "/ergebnisAnzeigen")

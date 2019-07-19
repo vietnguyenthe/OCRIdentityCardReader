@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prüfung</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/stil.css">
+</head>
+<body>
+<h1>Sind Ihre Daten richtig?</h1>
+
+
+
+<form method="post">
+<table class="row justify-content-center align-items-center">
+    <tr>
+        <th scope="col">Felder</th>
+        <th scope="col">Eingaben</th>
+    </tr>
+    <tr>
+        <th>Vorname</th>
+        <td th:text="${neueDokumentDaten.vorname}"></td>
+    </tr>
+    <tr>
+        <th>Nachname</th>
+        <td th:text="${neueDokumentDaten.nachname}"></td>
+    </tr>
+    <tr>
+        <th>Geburtsdatum</th>
+        <td th:text="${neueDokumentDaten.geburtsDatum}"></td>
+    </tr>
+    <tr>
+        <th>Geburtsort</th>
+        <td th:text="${neueDokumentDaten.geburtsOrt}"></td>
+    </tr>
+    <tr>
+        <th>Staatsangehörigkeit</th>
+        <td th:text="${neueDokumentDaten.staatsangehoerigkeit}"></td>
+    </tr>
+    <tr>
+        <th>Ausweis-ID</th>
+        <td th:text="${neueDokumentDaten.ausweisId}"></td>
+    </tr>
+    <tr>
+        <th>Straße</th>
+        <td th:text="${neueDokumentDaten.strasse}"></td>
+    </tr>
+    <tr>
+        <th>Hausnummer</th>
+        <td th:text="${neueDokumentDaten.hausNr}"></td>
+    </tr>
+    <tr>
+        <th>PLZ</th>
+        <td th:text="${neueDokumentDaten.plz}"></td>
+    </tr>
+    <tr>
+        <th>Stadt</th>
+        <td th:text="${neueDokumentDaten.stadt}"></td>
+    </tr>
+</table>
+    <button type="submit" class="btn btn-primary" th:action="@{/ergebnisAnzeigen}">Bestätigen</button>
+    <button type="submit" class="btn btn-primary" th:action="@{/datenBearbeiten}">Ändern</button>
+</form>
+
+</body>
+</html>
