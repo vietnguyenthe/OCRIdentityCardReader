@@ -17,63 +17,94 @@
             crossorigin="anonymous"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../static/css/stil.css">
+    <link rel="stylesheet" href="../css/stil.css">
 </head>
 <body>
-<h1>Sind Ihre Daten richtig?</h1>
 
+<div class="container">
+    <div class="form-row justify-content-center align-items-center">
+        <div class="form-group col-auto">
+            <div class="centerItem"><img src="../img/EasyIdentLogo.png" height="150" width="150"
+                                         alt="Indent"/></div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-auto centerItem">
+            <table class="table">
+                <tr>
+                    <th>Felder</th>
+                    <th>         </th>
+                    <th>Eingaben</th>
+                </tr>
+                <tr>
+                    <td>Vorname</td>
+                    <td th:text="*{neueDokumentDaten.vorname}"></td>
+                </tr>
+                <tr>
+                    <td>Nachname</td>
+                    <td th:text="*{neueDokumentDaten.nachname}"></td>
+                </tr>
+                <tr>
+                    <td>Straße</td>
+                    <td th:text="*{neueDokumentDaten.strasse}"></td>
+                </tr>
+                <tr>
+                    <td>Hausnummer</td>
+                    <td th:text="*{neueDokumentDaten.hausNr}"></td>
+                </tr>
+                <tr>
+                    <td>PLZ</td>
+                    <td th:text="*{neueDokumentDaten.plz}"></td>
+                </tr>
+                <tr>
+                    <td>Stadt</td>
+                    <td th:text="*{neueDokumentDaten.stadt}"></td>
+                </tr>
+                <tr>
+                    <td>Geburtsdatum</td>
+                    <td th:text="*{neueDokumentDaten.geburtsDatum}"></td>
+                </tr>
+                <tr>
+                    <td>Geburtsort</td>
+                    <td th:text="*{neueDokumentDaten.geburtsOrt}"></td>
+                </tr>
+                <tr>
+                    <td>Staatsangehörigkeit</td>
+                    <td th:text="*{neueDokumentDaten.staatsangehoerigkeit}"></td>
+                </tr>
+                <tr>
+                    <td>Ausweis-ID</td>
+                    <td th:text="*{neueDokumentDaten.ausweisId}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-auto">
+            <a th:href="@{/ergebnisAnzeigen}">
+                <button class="btn btn-success">Daten bestätigen</button>
+            </a>
+            <a th:href="@{/datenBearbeiten}">
+                <button class="btn btn-danger">Daten ändern</button>
+            </a>
+        </div>
+    </div>
+</div>
 
+<div class="container">
+    <hr/>
+    <footer class="footer">
 
-<form method="post">
-<table class="row justify-content-center align-items-center">
-    <tr>
-        <th scope="col">Felder</th>
-        <th scope="col">Eingaben</th>
-    </tr>
-    <tr>
-        <th>Vorname</th>
-        <td th:text="${neueDokumentDaten.vorname}"></td>
-    </tr>
-    <tr>
-        <th>Nachname</th>
-        <td th:text="${neueDokumentDaten.nachname}"></td>
-    </tr>
-    <tr>
-        <th>Geburtsdatum</th>
-        <td th:text="${neueDokumentDaten.geburtsDatum}"></td>
-    </tr>
-    <tr>
-        <th>Geburtsort</th>
-        <td th:text="${neueDokumentDaten.geburtsOrt}"></td>
-    </tr>
-    <tr>
-        <th>Staatsangehörigkeit</th>
-        <td th:text="${neueDokumentDaten.staatsangehoerigkeit}"></td>
-    </tr>
-    <tr>
-        <th>Ausweis-ID</th>
-        <td th:text="${neueDokumentDaten.ausweisId}"></td>
-    </tr>
-    <tr>
-        <th>Straße</th>
-        <td th:text="${neueDokumentDaten.strasse}"></td>
-    </tr>
-    <tr>
-        <th>Hausnummer</th>
-        <td th:text="${neueDokumentDaten.hausNr}"></td>
-    </tr>
-    <tr>
-        <th>PLZ</th>
-        <td th:text="${neueDokumentDaten.plz}"></td>
-    </tr>
-    <tr>
-        <th>Stadt</th>
-        <td th:text="${neueDokumentDaten.stadt}"></td>
-    </tr>
-</table>
-    <button type="submit" class="btn btn-primary" th:action="@{/ergebnisAnzeigen}">Bestätigen</button>
-    <button type="submit" class="btn btn-primary" th:action="@{/datenBearbeiten}">Ändern</button>
-</form>
-
+        <div class="row justify-content-center align-items-center">
+            <a href="startseite.html">Impressum</a>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <p>Copyright © 2019 EasyIdent</p>
+        </div>
+    </footer>
+</div>
 </body>
 </html>

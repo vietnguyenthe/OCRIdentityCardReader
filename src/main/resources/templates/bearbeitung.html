@@ -18,13 +18,13 @@
             crossorigin="anonymous"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../static/css/stil.css">
+    <link rel="stylesheet" href="../css/stil.css">
 </head>
 <body>
 <div class="container">
     <div class="form-row justify-content-center align-items-center">
         <div class="form-group col-auto">
-            <div class="centerItem"><img src="../static/img/EasyIdentLogo.png" height="150" width="150"
+            <div class="centerItem"><img src="../img/EasyIdentLogo.png" height="150" width="150"
                                          alt="Indent"/></div>
             <br>
         </div>
@@ -34,8 +34,8 @@
 
 <div class="container">
 
-    <form th:action="@{/ergebnisAnzeigen}"
-          th:object="${neueDokumentDaten}" method="post">
+    <form th:action="@{/datenUebergabe}"
+          th:object="${neueDokumentDaten}" method="get">
 
         <div class="form-row">
             <div class="form-group col-md-6">
