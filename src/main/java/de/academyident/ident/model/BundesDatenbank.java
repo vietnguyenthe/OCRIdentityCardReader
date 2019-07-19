@@ -12,6 +12,23 @@ public class BundesDatenbank {
     @GeneratedValue
     private int id;
 
+    public BundesDatenbank() {
+    }
+
+    public BundesDatenbank(String vorname, String nachname, String strasse, int hausNr, int plz, String stadt,
+                           String staatsangehoerigkeit, String ausweisId, String geburtsDatum, String geburtsOrt) {
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.strasse = strasse;
+        this.hausNr = hausNr;
+        this.plz = plz;
+        this.stadt = stadt;
+        this.staatsangehoerigkeit = staatsangehoerigkeit;
+        this.ausweisId = ausweisId;
+        this.geburtsDatum = geburtsDatum;
+        this.geburtsOrt = geburtsOrt;
+    }
+
     // Anschrift
     private String vorname;
     private String nachname;

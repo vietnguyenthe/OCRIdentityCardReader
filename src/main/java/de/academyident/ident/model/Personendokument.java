@@ -6,11 +6,11 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class Personendokument {
+public class Personendokument{
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
     // Anschrift
     private String vorname;
@@ -32,11 +32,12 @@ public class Personendokument {
     private boolean bestaetigtRealePerson = false; // Zweite Prüfung mit "externer" DB
 
 
-    public int getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

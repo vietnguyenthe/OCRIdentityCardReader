@@ -52,6 +52,7 @@ public class IdentController {
         List<BundesDatenbank> bundesDatenbank = new ArrayList<>();
         bundesDatenbank = bundesDatenbankRepo.findAll();
         if(Validierung.pruefeObRealePerson(dokument, bundesDatenbank)){
+            personendokumentRepo.save(dokument);
             return "ergebnis";
         }else{
             //hier muss noch auf eine Alternativseite verlinkt werden, falls der Datenbankabgleich negativ ist
@@ -152,6 +153,5 @@ public class IdentController {
 
         return "redirect:/";
     }*/
-
 
 }
