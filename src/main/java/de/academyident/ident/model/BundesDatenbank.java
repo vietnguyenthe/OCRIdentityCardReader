@@ -115,5 +115,4 @@ public class BundesDatenbank {
         this.geburtsOrt = geburtsOrt;
     }
 
-
 }
