@@ -21,6 +21,7 @@ public class IdentController {
 
     @Autowired
     private PersonendokumentRepo personendokumentRepo;
+
     @Autowired
     private BundesDatenbankRepo bundesDatenbankRepo;
 
@@ -52,7 +53,7 @@ public class IdentController {
 
         if (Validierung.pruefeAusweisEchtheit(dokument)) {
             dokument.setDokumentIstEcht(true);
-            return "/"; //TODO Methode zum Wechsel auf dritte View hier einfügen
+            return "prasentation"; //TODO Methode zum Wechsel auf dritte View hier einfügen
         } else {
             return "redirect: /"; //TODO: BONUS: Bei false zurück auf die erste View mit Fehlermeldung
         }

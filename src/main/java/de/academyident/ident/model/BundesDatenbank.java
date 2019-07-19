@@ -24,7 +24,7 @@ public class BundesDatenbank {
 
     private String staatsangehoerigkeit;
     private String ausweisId;
-    private LocalDate geburtsDatum;
+    private String geburtsDatum;
     private String geburtsOrt;
 
     public int getId() {
@@ -99,11 +99,11 @@ public class BundesDatenbank {
         this.ausweisId = ausweisId;
     }
 
-    public LocalDate getGeburtsDatum() {
+    public String getGeburtsDatum() {
         return geburtsDatum;
     }
 
-    public void setGeburtsDatum(LocalDate geburtsDatum) {
+    public void setGeburtsDatum(String geburtsDatum) {
         this.geburtsDatum = geburtsDatum;
     }
 
