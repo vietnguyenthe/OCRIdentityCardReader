@@ -40,9 +40,9 @@ public class IdentController {
 
         if (Validierung.pruefeAusweisEchtheit(dokument)) {
             dokument.setDokumentIstEcht(true);
-            return "prasentation"; //TODO Methode zum Wechsel auf dritte View hier einfügen
+            return "prasentation";
         } else {
-            return "redirect: /"; //TODO: BONUS: Bei false zurück auf die erste View mit Fehlermeldung
+            return "startseite";
         }
     }
 

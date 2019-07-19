@@ -24,75 +24,116 @@
 <br>
 
 <div class="container">
-    <form th:action="@{/datenUebergabe}"
-          th:object="${neueDokumentDaten}" method="post">
-        <div class="form-row justify-content-center align-items-center">
-            <div class="form-group col-auto">
-                <div class="centerItem"><img src="../img/dummylogo.jpg" height="150" width="150" alt="Indent"/></div>
-            </div>
+    <div class="form-row justify-content-center align-items-center">
+        <div class="form-group col-auto">
+            <div class="centerItem"><img src="../img/dummylogo.jpg" height="150" width="150"
+                                         alt="Indent"/></div>
         </div>
-        <div class="form-row">
-            <div class="form-group col-auto">
-                <h4>Personalausweis – Daten</h4>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="vorname">Vorname</label>
-                <input th:field="*{vorname}" type="text" class="form-control"  id="vorname" placeholder="Max">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="nachname">Nachname</label>
-                <input th:field="*{nachname}" type="text" class="form-control" id="nachname" placeholder="Mustermann">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="strasse">Straße</label>
-                <input th:field="*{strasse}" type="text" class="form-control" id="strasse" placeholder="Hauptstraße">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="hausnummer">Hausnummer</label>
-                <input th:field="*{hausNr}" type="text" class="form-control" id="hausnummer" placeholder="123">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="stadt">Stadt</label>
-                <input th:field="*{stadt}" type="text" class="form-control" id="stadt" placeholder="Musterstadt">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="plz">PLZ</label>
-                <input th:field="*{plz}" type="text" class="form-control" id="plz" placeholder="12345">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="geburtsdatum">Geburtsdatum</label>
-                <input th:field="*{geburtsDatum}" type="text" class="form-control" id="geburtsdatum" placeholder="24.12.1950">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="geburtsort">Geburtsort</label>
-                <input th:field="*{geburtsOrt}" type="text" class="form-control" id="geburtsort" placeholder="Musterdorf">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="staatsangehoerigkeit">Staatsangehörigkeit</label>
-                <input th:field="*{staatsangehoerigkeit}" type="text" class="form-control" id="staatsangehoerigkeit" placeholder="Deutschland">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="ausweisID">AusweisID</label>
-                <input th:field="*{ausweisId}" type="text" class="form-control" id="ausweisID" placeholder="T123456789">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="echtheitsMerkmal">Echtheitsmerkmal</label>
-                <input th:field="*{echtheitsMerkmal}" type="text" class="form-control" id="echtheitsMerkmal" placeholder="Personalausweis">
-            </div>
-        </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
+</div>
 
+<div class="container">
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="texteingabeformular">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                            aria-controls="collapseOne">
+                        Datenübergabe via Texteingabe
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <form th:action="@{/datenUebergabe}"
+                          th:object="${neueDokumentDaten}" method="post">
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="vorname">Vorname</label>
+                                <input th:field="*{vorname}" type="text" class="form-control" id="vorname"
+                                       placeholder="Max">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="nachname">Nachname</label>
+                                <input th:field="*{nachname}" type="text" class="form-control" id="nachname"
+                                       placeholder="Mustermann">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="strasse">Straße</label>
+                                <input th:field="*{strasse}" type="text" class="form-control" id="strasse"
+                                       placeholder="Hauptstraße">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="hausnummer">Hausnummer</label>
+                                <input th:field="*{hausNr}" type="text" class="form-control" id="hausnummer"
+                                       placeholder="123">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="stadt">Stadt</label>
+                                <input th:field="*{stadt}" type="text" class="form-control" id="stadt"
+                                       placeholder="Musterstadt">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="plz">PLZ</label>
+                                <input th:field="*{plz}" type="text" class="form-control" id="plz" placeholder="12345">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="geburtsdatum">Geburtsdatum</label>
+                                <input th:field="*{geburtsDatum}" type="text" class="form-control" id="geburtsdatum"
+                                       placeholder="24.12.1950">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="geburtsort">Geburtsort</label>
+                                <input th:field="*{geburtsOrt}" type="text" class="form-control" id="geburtsort"
+                                       placeholder="Musterdorf">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="staatsangehoerigkeit">Staatsangehörigkeit</label>
+                                <input th:field="*{staatsangehoerigkeit}" type="text" class="form-control"
+                                       id="staatsangehoerigkeit" placeholder="Deutschland">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="ausweisID">AusweisID</label>
+                                <input th:field="*{ausweisId}" type="text" class="form-control" id="ausweisID"
+                                       placeholder="T123456789">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="echtheitsMerkmal">Echtheitsmerkmal</label>
+                                <input th:field="*{echtheitsMerkmal}" type="text" class="form-control"
+                                       id="echtheitsMerkmal" placeholder="Personalausweis">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="false" aria-controls="collapseTwo">
+                        Datenübergabe via Scan/Bild des Dokuments
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    Hier kommt die Implementierung via Tesseract.
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -113,49 +154,4 @@
 </html>
 
 
-<!-- Idee für die Formatierung des Startbildschirms später -->
-<!--<div id="accordion">-->
-<!--    <div class="card">-->
-<!--        <div class="card-header" id="headingOne">-->
-<!--            <h5 class="mb-0">-->
-<!--                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
-<!--                    Collapsible Group Item #1-->
-<!--                </button>-->
-<!--            </h5>-->
-<!--        </div>-->
 
-<!--        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">-->
-<!--            <div class="card-body">-->
-<!--                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="card">-->
-<!--        <div class="card-header" id="headingTwo">-->
-<!--            <h5 class="mb-0">-->
-<!--                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">-->
-<!--                    Collapsible Group Item #2-->
-<!--                </button>-->
-<!--            </h5>-->
-<!--        </div>-->
-<!--        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">-->
-<!--            <div class="card-body">-->
-<!--                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="card">-->
-<!--        <div class="card-header" id="headingThree">-->
-<!--            <h5 class="mb-0">-->
-<!--                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">-->
-<!--                    Collapsible Group Item #3-->
-<!--                </button>-->
-<!--            </h5>-->
-<!--        </div>-->
-<!--        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">-->
-<!--            <div class="card-body">-->
-<!--                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
