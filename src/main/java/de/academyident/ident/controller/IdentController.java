@@ -46,10 +46,10 @@ public class IdentController {
         }
     }
 
-//    Methode führt zu Pres
+     //Methode führt zu html Bearbeitung
     @PostMapping(value="/datenBearbeiten")
     public String bearbeiteDaten(Model model){
-        return "presentation";
+        return "bearbeitung";
     }
 
     @PostMapping(value = "/ergebnisAnzeigen")
