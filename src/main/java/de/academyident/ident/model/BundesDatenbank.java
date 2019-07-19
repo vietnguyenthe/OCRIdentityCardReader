@@ -21,15 +21,11 @@ public class BundesDatenbank {
     private String stadt;
 
     // Dokumentmerkmale
-    private String echtheitsMerkmal;
+
     private String staatsangehoerigkeit;
     private String ausweisId;
     private LocalDate geburtsDatum;
     private String geburtsOrt;
-
-    // Validierungsinformationen
-    private boolean dokumentIstEcht = false;
-    private boolean bestaetigtRealePerson = false; // Zweite Prüfung mit "externer" DB
 
     public int getId() {
         return id;
@@ -87,14 +83,6 @@ public class BundesDatenbank {
         this.stadt = stadt;
     }
 
-    public String getEchtheitsMerkmal() {
-        return echtheitsMerkmal;
-    }
-
-    public void setEchtheitsMerkmal(String echtheitsMerkmal) {
-        this.echtheitsMerkmal = echtheitsMerkmal;
-    }
-
     public String getStaatsangehoerigkeit() {
         return staatsangehoerigkeit;
     }
@@ -127,19 +115,5 @@ public class BundesDatenbank {
         this.geburtsOrt = geburtsOrt;
     }
 
-    public boolean isDokumentIstEcht() {
-        return dokumentIstEcht;
-    }
 
-    public void setDokumentIstEcht(boolean dokumentIstEcht) {
-        this.dokumentIstEcht = dokumentIstEcht;
-    }
-
-    public boolean isBestaetigtRealePerson() {
-        return bestaetigtRealePerson;
-    }
-
-    public void setBestaetigtRealePerson(boolean bestaetigtRealePerson) {
-        this.bestaetigtRealePerson = bestaetigtRealePerson;
-    }
 }
