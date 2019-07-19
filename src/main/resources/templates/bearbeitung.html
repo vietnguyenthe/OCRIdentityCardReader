@@ -36,45 +36,68 @@
 
     <form th:action="@{/ergebnisAnzeigen}"
           th:object="${neueDokumentDaten}" method="post">
-        <textarea placeholder="Dokumenteninfos"></textarea> <br>
-        <div class="form-row justify-content-center align-items-center">
-        </div>
+
         <div class="form-row">
-            <div class="form-group col-6">
+            <div class="form-group col-md-6">
                 <label for="vorname">Vorname</label>
-                <input type="text" class="form-control" th:field="*{vorname}" id="vorname" th:placeholder="*{vorname}">
+                <input th:field="*{vorname}" type="text" class="form-control" id="vorname"
+                       th:placeholder="*{vorname}">
             </div>
             <div class="form-group col-md-6">
                 <label for="nachname">Nachname</label>
-                <input type="text" class="form-control" th:field="*{nachname}" id="nachname" th:placeholder="*{nachname}">
+                <input th:field="*{nachname}" type="text" class="form-control" id="nachname"
+                       th:placeholder="*{nachname}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="strasse">Straße</label>
-                <input type="text" class="form-control" th:field="*{strasse}" id="strasse" th:placeholder="*{strasse}">
+                <input th:field="*{strasse}" type="text" class="form-control" id="strasse"
+                       th:placeholder="*{strasse}">
             </div>
             <div class="form-group col-md-6">
                 <label for="hausnummer">Hausnummer</label>
-                <input type="text" class="form-control" th:field="*{hausNr}" id="hausnummer" th:placeholder="*{hausNr}">
+                <input th:field="*{hausNr}" type="text" class="form-control" id="hausnummer"
+                       th:placeholder="*{hausNr}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="stadt">Stadt</label>
-                <input type="text" class="form-control" th:field="*{stadt}" id="stadt" th:placeholder="*{stadt}">
+                <input th:field="*{stadt}" type="text" class="form-control" id="stadt"
+                       th:placeholder="*{stadt}">
             </div>
             <div class="form-group col-md-6">
                 <label for="plz">PLZ</label>
-                <input type="text" class="form-control" th:field="*{plz}" id="plz" th:placeholder="*{plz}">
+                <input th:field="*{plz}" type="text" class="form-control" id="plz" th:placeholder="*{plz}">
             </div>
         </div>
-        <div class="form-group">
-            <p>Sind die Daten korrekt?</p>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="geburtsdatum">Geburtsdatum</label>
+                <input th:field="*{geburtsDatum}" type="text" class="form-control" id="geburtsdatum"
+                       th:placeholder="*{geburtsDatum}">
             </div>
-        <button type="submit" class="btn btn-primary">Senden</button>
+            <div class="form-group col-md-6">
+                <label for="geburtsort">Geburtsort</label>
+                <input th:field="*{geburtsOrt}" type="text" class="form-control" id="geburtsort"
+                       th:placeholder="*{geburtsOrt}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="staatsangehoerigkeit">Staatsangehörigkeit</label>
+                <input th:field="*{staatsangehoerigkeit}" type="text" class="form-control"
+                       id="staatsangehoerigkeit" th:placeholder="*{staatsangehoerigkeit}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="ausweisID">AusweisID</label>
+                <input th:field="*{ausweisId}" type="text" class="form-control" id="ausweisID"
+                       th:placeholder="*{ausweisId}">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-warning">Änderungen bestätigen</button>
     </form>
-
 </div>
 
 
@@ -87,7 +110,7 @@
             <a href="startseite.html">Impressum</a>
         </div>
         <div class="row justify-content-center align-items-center">
-            <p>Copyright © 2019 Ident</p>
+            <p>Copyright © 2019 EasyIdent</p>
         </div>
     </footer>
 </div>

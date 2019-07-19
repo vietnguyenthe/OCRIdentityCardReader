@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -40,7 +40,7 @@ public class IdentController {
 
         if (Validierung.pruefeAusweisEchtheit(dokument)) {
             dokument.setDokumentIstEcht(true);
-            return "prasentation";
+            return "pruefung";
         } else {
             return "startseite";
         }
