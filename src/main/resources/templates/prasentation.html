@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Präsentation</title>
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/stil.css">
 
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -20,17 +17,69 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/stil.css">
 </head>
 <body>
-<form action="ergebnis.html">
-    <!--  hier hätte ich mit fieldset eine Box drumherum gelegt  -->
-    <div align="center">
+<div class="container">
+
+    <form th:action="@{/ergebnisAnzeigen}"
+          th:object="${neueDokumentDaten}" method="post">
         <textarea placeholder="Dokumenteninfos"></textarea> <br>
-        &nbsp Vorname: <input type="text" name="vorname"> <br>
-        Nachname: <input type="text" name="nachname"> <br>
-        <p>Sind die Daten korrekt?</p>
-        <input type="submit" name="abschicken"><br>
-    </div>
-</form>
+        <div class="form-row justify-content-center align-items-center">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-6">
+                <label for="vorname">Vorname</label>
+                <input type="text" class="form-control" th:field="*{vorname}" id="vorname" th:placeholder="*{vorname}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nachname">Nachname</label>
+                <input type="text" class="form-control" th:field="*{nachname}" id="nachname" th:placeholder="*{nachname}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="strasse">Straße</label>
+                <input type="text" class="form-control" th:field="*{strasse}" id="strasse" th:placeholder="*{strasse}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="hausnummer">Hausnummer</label>
+                <input type="text" class="form-control" th:field="*{hausNr}" id="hausnummer" th:placeholder="*{hausNr}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="stadt">Stadt</label>
+                <input type="text" class="form-control" th:field="*{stadt}" id="stadt" th:placeholder="*{stadt}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="plz">PLZ</label>
+                <input type="text" class="form-control" th:field="*{plz}" id="plz" th:placeholder="*{plz}">
+            </div>
+        </div>
+        <div class="form-group">
+            <p>Sind die Daten korrekt?</p>
+            </div>
+        <button type="submit" class="btn btn-primary">Senden</button>
+    </form>
+
+</div>
+
+
+
+<div class="container">
+    <hr/>
+
+    <!--FOOTER-->
+    <footer class="footer">
+
+        <div class="row justify-content-center align-items-center">
+            <span class="text-muted firaTextHighlight"><a href="startseite.html">Impressum</a></span>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <p>Copyright © 2019 Ident</p>
+        </div>
+    </footer>
 </body>
 </html>

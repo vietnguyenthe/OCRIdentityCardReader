@@ -35,7 +35,7 @@ public class IdentController {
 
     @GetMapping(value = "/ergebnisAnzeigen")
     public String ergebnisAnzeigen(Model model,
-                                   @ModelAttribute("neueDokumentdaten") Personendokument dokument) {
+                                   @ModelAttribute("neueDokumentDaten") Personendokument dokument) {
         List<BundesDatenbank> bundesDatenbank = new ArrayList<>();
         bundesDatenbank = bundesDatenbankRepo.findAll();
         if(Validierung.pruefeObRealePerson(dokument, bundesDatenbank)){
