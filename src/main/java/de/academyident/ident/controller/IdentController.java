@@ -50,9 +50,18 @@ public class IdentController {
 
      //Methode führt zu html Bearbeitung
     @GetMapping(value="/datenBearbeiten")
-    public String bearbeiteDaten(Model model){
+    public String bearbeiteDaten(Model model,
+                                 @ModelAttribute("neueDokumentDaten") Personendokument dokument){
         return "bearbeitung";
     }
+
+    @PostMapping(value="/ueberarbeiteteDaten")
+    public String ueberarbeiteteDatenPruefen(Model model,
+                                             @ModelAttribute("neueDokumentDaten") Personendokument dokument)   {
+        return "pruefung";
+    }
+
+
 
     @GetMapping(value = "/ergebnisAnzeigen")
     public String ergebnisAnzeigen(Model model,
