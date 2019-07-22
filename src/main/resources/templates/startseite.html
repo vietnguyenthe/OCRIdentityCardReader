@@ -37,7 +37,7 @@
             <div class="card-header" id="texteingabeformular">
                 <h5 class="mb-0">
                     <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                            aria-controls="collapseOne">
+                            aria-controls="collapseOne" id="startseite_toggleTextInput">
                         Datenübergabe via Texteingabe
                     </button>
                 </h5>
@@ -50,69 +50,70 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="vorname">Vorname</label>
-                                <input th:field="*{vorname}" type="text" class="form-control" id="vorname"
-                                       placeholder="Max">
+                                <label for="startseite_vorname">Vorname</label>
+                                <input th:field="*{vorname}" type="text" class="form-control" placeholder="Max"
+                                       id="startseite_vorname">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="nachname">Nachname</label>
-                                <input th:field="*{nachname}" type="text" class="form-control" id="nachname"
-                                       placeholder="Mustermann">
+                                <label for="startseite_nachname">Nachname</label>
+                                <input th:field="*{nachname}" type="text" class="form-control" placeholder="Mustermann"
+                                       id="startseite_nachname">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="strasse">Straße</label>
-                                <input th:field="*{strasse}" type="text" class="form-control" id="strasse"
-                                       placeholder="Hauptstraße">
+                                <label for="startseite_strasse">Straße</label>
+                                <input th:field="*{strasse}" type="text" class="form-control" placeholder="Hauptstraße"
+                                       id="startseite_strasse">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="hausnummer">Hausnummer</label>
-                                <input th:field="*{hausNr}" type="text" class="form-control" id="hausnummer"
-                                       placeholder="123">
+                                <label for="startseite_hausnummer">Hausnummer</label>
+                                <input th:field="*{hausNr}" type="text" class="form-control" placeholder="123"
+                                       id="startseite_hausnummer">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="stadt">Stadt</label>
-                                <input th:field="*{stadt}" type="text" class="form-control" id="stadt"
-                                       placeholder="Musterstadt">
+                                <label for="startseite_stadt">Stadt</label>
+                                <input th:field="*{stadt}" type="text" class="form-control" placeholder="Musterstadt"
+                                       id="startseite_stadt">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="plz">PLZ</label>
-                                <input th:field="*{plz}" type="text" class="form-control" id="plz" placeholder="12345">
+                                <label for="startseite_plz">PLZ</label>
+                                <input th:field="*{plz}" type="text" class="form-control"  placeholder="12345"
+                                       id="startseite_plz">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="geburtsdatum">Geburtsdatum</label>
-                                <input th:field="*{geburtsDatum}" type="text" class="form-control" id="geburtsdatum"
-                                       placeholder="24.12.1950">
+                                <label for="startseite_geburtsdatum">Geburtsdatum</label>
+                                <input th:field="*{geburtsDatum}" type="text" class="form-control"
+                                       placeholder="24.12.1950" id="startseite_geburtsdatum">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="geburtsort">Geburtsort</label>
-                                <input th:field="*{geburtsOrt}" type="text" class="form-control" id="geburtsort"
-                                       placeholder="Musterdorf">
+                                <label for="startseite_geburtsort">Geburtsort</label>
+                                <input th:field="*{geburtsOrt}" type="text" class="form-control"
+                                       placeholder="Musterdorf" id="startseite_geburtsort">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="staatsangehoerigkeit">Staatsangehörigkeit</label>
+                                <label for="startseite_staatsangehoerigkeit">Staatsangehörigkeit</label>
                                 <input th:field="*{staatsangehoerigkeit}" type="text" class="form-control"
-                                       id="staatsangehoerigkeit" placeholder="Deutschland">
+                                        placeholder="Deutschland" id="startseite_staatsangehoerigkeit">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="ausweisID">AusweisID</label>
-                                <input th:field="*{ausweisId}" type="text" class="form-control" id="ausweisID"
-                                       placeholder="T123456789">
+                                <label for="startseite_ausweisID">AusweisID</label>
+                                <input th:field="*{ausweisId}" type="text" class="form-control" placeholder="T123456789"
+                                       id="startseite_ausweisID">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="echtheitsMerkmal">Echtheitsmerkmal</label>
+                                <label for="startseite_echtheitsMerkmal">Echtheitsmerkmal</label>
                                 <input th:field="*{echtheitsMerkmal}" type="text" class="form-control"
-                                       id="echtheitsMerkmal" placeholder="Personalausweis">
+                                       placeholder="Personalausweis" id="startseite_echtheitsMerkmal">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-warning">Submit</button>
+                        <button type="submit" class="btn btn-warning" id="startseite_submit">Submit</button>
                     </form>
                 </div>
             </div>
