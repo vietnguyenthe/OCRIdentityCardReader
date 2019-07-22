@@ -179,7 +179,6 @@ public class BeispielTest {
 
     }
 
-
     @Test
     public void CaseKeineUebereinstimmungMitBundesDB() {
         driver.get("http://localhost:8080");
