@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.File;
+import java.io.IOException;
 
 @Controller
 public class TesseractController {
@@ -18,7 +19,15 @@ public class TesseractController {
                                  @ModelAttribute("tessImage") TesseractFile tesseractFile){
 
 
-        String fullText = TesseractIdent.leseTextaus(tesseractFile.getTessImage());
+        File image = new File("tessfile.jpg");
+
+        try {
+            tesseractFile.getTessImage().transferTo(image); // FEHLER
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String fullText = TesseractIdent.leseTextaus(image);
 
         System.out.println(fullText);
 
