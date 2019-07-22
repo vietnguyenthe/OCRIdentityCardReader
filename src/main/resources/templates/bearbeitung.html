@@ -40,47 +40,47 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="vorname">Vorname</label>
-                <input th:field="*{vorname}" type="text" class="form-control" id="vorname"
+                <input th:field="*{vorname}" type="text" class="form-control" id="bearbeitung_vorname"
                        th:placeholder="*{vorname}">
             </div>
             <div class="form-group col-md-6">
                 <label for="nachname">Nachname</label>
-                <input th:field="*{nachname}" type="text" class="form-control" id="nachname"
+                <input th:field="*{nachname}" type="text" class="form-control" id="bearbeitung_nachname"
                        th:placeholder="*{nachname}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="strasse">Straße</label>
-                <input th:field="*{strasse}" type="text" class="form-control" id="strasse"
+                <input th:field="*{strasse}" type="text" class="form-control" id="bearbeitung_strasse"
                        th:placeholder="*{strasse}">
             </div>
             <div class="form-group col-md-6">
                 <label for="hausnummer">Hausnummer</label>
-                <input th:field="*{hausNr}" type="text" class="form-control" id="hausnummer"
+                <input th:field="*{hausNr}" type="text" class="form-control" id="bearbeitung_hausnummer"
                        th:placeholder="*{hausNr}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="stadt">Stadt</label>
-                <input th:field="*{stadt}" type="text" class="form-control" id="stadt"
+                <input th:field="*{stadt}" type="text" class="form-control" id="bearbeitung_stadt"
                        th:placeholder="*{stadt}">
             </div>
             <div class="form-group col-md-6">
                 <label for="plz">PLZ</label>
-                <input th:field="*{plz}" type="text" class="form-control" id="plz" th:placeholder="*{plz}">
+                <input th:field="*{plz}" type="text" class="form-control" id="bearbeitung_plz" th:placeholder="*{plz}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="geburtsdatum">Geburtsdatum</label>
-                <input th:field="*{geburtsDatum}" type="text" class="form-control" id="geburtsdatum"
+                <input th:field="*{geburtsDatum}" type="text" class="form-control" id="bearbeitung_geburtsdatum"
                        th:placeholder="*{geburtsDatum}">
             </div>
             <div class="form-group col-md-6">
                 <label for="geburtsort">Geburtsort</label>
-                <input th:field="*{geburtsOrt}" type="text" class="form-control" id="geburtsort"
+                <input th:field="*{geburtsOrt}" type="text" class="form-control" id="bearbeitung_geburtsort"
                        th:placeholder="*{geburtsOrt}">
             </div>
         </div>
@@ -88,15 +88,15 @@
             <div class="form-group col-md-6">
                 <label for="staatsangehoerigkeit">Staatsangehörigkeit</label>
                 <input th:field="*{staatsangehoerigkeit}" type="text" class="form-control"
-                       id="staatsangehoerigkeit" th:placeholder="*{staatsangehoerigkeit}">
+                       id="bearbeitung_staatsangehoerigkeit" th:placeholder="*{staatsangehoerigkeit}">
             </div>
             <div class="form-group col-md-6">
                 <label for="ausweisID">AusweisID</label>
-                <input th:field="*{ausweisId}" type="text" class="form-control" id="ausweisID"
+                <input th:field="*{ausweisId}" type="text" class="form-control" id="bearbeitung_ausweisID"
                        th:placeholder="*{ausweisId}">
             </div>
         </div>
-        <button type="submit" class="btn btn-warning">Änderungen bestätigen</button>
+        <button type="submit" class="btn btn-warning" id="bearbeitung_bestaetigen">Änderungen bestätigen</button>
     </form>
 </div>
 
