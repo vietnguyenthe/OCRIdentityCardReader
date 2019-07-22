@@ -3,6 +3,7 @@ package de.academyident.ident.util;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class TesseractIdent {
@@ -11,6 +12,7 @@ public class TesseractIdent {
 
         Tesseract tesseract = new Tesseract();
         tesseract.setDatapath("src\\main\\resources\\tesseract");
+
 
         String fulltext = null;
         try {
