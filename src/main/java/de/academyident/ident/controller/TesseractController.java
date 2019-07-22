@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,8 +27,25 @@ public class TesseractController {
                                  @ModelAttribute("tessImage") TesseractFile tesseractFile){
 
 
-        SaveFile.saveFileOnDisk(tesseractFile, "testestestes.jpg");
+        SaveFile.saveFileOnDisk(tesseractFile, "contrastTestImage.jpg");
 
+        BufferedImage bufferedImage = null;
+        try {
+            bufferedImage = ImageIO.read(new File("src/main/resources/tesseract/contrastTestImage.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        RescaleOp op = new RescaleOp(1.2f, 0, null);
+        bufferedImage = op.filter(bufferedImage, bufferedImage);
+
+        File outputfile = new File("src/main/resources/tesseract/contrastTestImagesavedBrighter.jpg");
+        try {
+            ImageIO.write(bufferedImage, "jpg", outputfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         return "tessPruefung";
