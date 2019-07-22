@@ -239,4 +239,27 @@ public class BeispielTest {
         waitForAction(2.0);
     }
 
+    @Test(groups = "d", dependsOnGroups = "c")
+    public void CaseFehlerhaftesEchtheitsmerkmal() {
+
+        driver.get("http://localhost:8080");
+
+        // Startseite - Formular öffnen und mit Text befüllen
+        WebElement btn = driver.findElement(By.id("startseite_toggleTextInput"));
+        waitForAction(2.0);
+        btn.click();
+
+        waitForAction(2.0);
+        WebElement startseite_echtheitsMerkmal = driver.findElement(By.id("startseite_echtheitsMerkmal"));
+        startseite_echtheitsMerkmal.sendKeys("Pilotausweis"); // Notwendig für korrekte Validierung
+
+        // Scrollt die Seite runter
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("window.scrollBy(0,100)");
+
+        WebElement btnSubmit = driver.findElement(By.id("startseite_submit"));
+        waitForAction(2.0);
+        btnSubmit.click();
+    }
+
 }
