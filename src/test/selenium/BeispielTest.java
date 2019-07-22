@@ -41,7 +41,7 @@ public class BeispielTest {
         driver.close();
     }
 
-    @Test
+    @Test(groups ="a")
     public void bestCasePerfekteDaten() {
 
         // Startseite - Formular öffnen und mit Text befüllen
@@ -88,7 +88,7 @@ public class BeispielTest {
         jse.executeScript("window.scrollBy(0,100)");
 
         WebElement btnSubmit = driver.findElement(By.id("startseite_submit"));
-        waitForAction(5.0);
+        waitForAction(2.0);
         btnSubmit.click();
 
         // Pruefungsseite - Eingaben positiv bestätigen
@@ -96,9 +96,10 @@ public class BeispielTest {
         WebElement btnBestaetigen = driver.findElement(By.id("pruefung_datenBestaetigen"));
         waitForAction(2.0);
         btnBestaetigen.click();
+        waitForAction(2.0);
     }
 
-    @Test
+    @Test(groups = "b", dependsOnGroups = "a")
     public void CaseDatenBearbeiten() {
         driver.get("http://localhost:8080");
 
@@ -146,7 +147,7 @@ public class BeispielTest {
         jse.executeScript("window.scrollBy(0,100)");
 
         WebElement btnSubmit = driver.findElement(By.id("startseite_submit"));
-        waitForAction(5.0);
+        waitForAction(2.0);
         btnSubmit.click();
 
         // Pruefungsseite - Eingaben bearbeiten
@@ -176,10 +177,10 @@ public class BeispielTest {
         WebElement btnBestaetigen = driver.findElement(By.id("pruefung_datenBestaetigen"));
         waitForAction(2.0);
         btnBestaetigen.click();
-
+        waitForAction(2.0);
     }
 
-    @Test
+    @Test(groups = "c", dependsOnGroups = "b")
     public void CaseKeineUebereinstimmungMitBundesDB() {
         driver.get("http://localhost:8080");
 
@@ -227,7 +228,7 @@ public class BeispielTest {
         jse.executeScript("window.scrollBy(0,100)");
 
         WebElement btnSubmit = driver.findElement(By.id("startseite_submit"));
-        waitForAction(5.0);
+        waitForAction(2.0);
         btnSubmit.click();
 
         // Pruefungsseite - Eingaben positiv bestätigen
@@ -235,6 +236,7 @@ public class BeispielTest {
         WebElement btnBestaetigen = driver.findElement(By.id("pruefung_datenBestaetigen"));
         waitForAction(2.0);
         btnBestaetigen.click();
+        waitForAction(2.0);
     }
 
 }
