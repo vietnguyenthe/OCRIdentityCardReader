@@ -2,6 +2,7 @@ package de.academyident.ident.controller;
 
 import de.academyident.ident.model.BundesDatenbank;
 import de.academyident.ident.model.Personendokument;
+import de.academyident.ident.model.TesseractFile;
 import de.academyident.ident.repository.BundesDatenbankRepo;
 import de.academyident.ident.repository.PersonendokumentRepo;
 import de.academyident.ident.util.Validierung;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +34,8 @@ public class IdentController {
     public String eingabeFormularAnzeigen(Model model) {
 
         model.addAttribute("neueDokumentDaten", new Personendokument());
+
+        model.addAttribute("tessImage", new TesseractFile());
 
         return "startseite";
     }

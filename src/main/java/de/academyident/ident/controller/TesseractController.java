@@ -15,13 +15,13 @@ public class TesseractController {
 
     @PostMapping(value = "/fileUpload")
     public String bearbeiteDaten(Model model,
-                                 @ModelAttribute("neueDokumentDaten") TesseractFile tesseractFile){
+                                 @ModelAttribute("tessImage") TesseractFile tesseractFile){
 
 
         String fullText = TesseractIdent.leseTextaus(tesseractFile.getTessImage());
 
         System.out.println(fullText);
 
-        return "bearbeitung";
+        return "tessPruefung";
     }
 }
