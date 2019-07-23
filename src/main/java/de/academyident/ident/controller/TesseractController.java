@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.io.File;
 import java.util.HashMap;
 
 @Controller
+@SessionAttributes("neueDokumentDaten")
 public class TesseractController {
 
 
@@ -36,15 +38,17 @@ public class TesseractController {
 
         HashMap<String, String> ergebnisMap = deutscherAusweisOCR.getResultMap();
 
-        System.out.println(ergebnisMap.toString());
+        ocrModelMapping(dokument, ergebnisMap);
 
+        return "pruefung";
+    }
+
+    private void ocrModelMapping(@ModelAttribute("neueDokumentDaten") Personendokument dokument, HashMap<String, String> ergebnisMap) {
         dokument.setNachname(ergebnisMap.get("nachname"));
         dokument.setVorname(ergebnisMap.get("vorname"));
         dokument.setStaatsangehoerigkeit(ergebnisMap.get("herkunftsland"));
         dokument.setGeburtsDatum(ergebnisMap.get("geburtsdatum"));
         dokument.setAusweisId(ergebnisMap.get("ausweisnummer"));
-
-        return "pruefung";
     }
 }
 
