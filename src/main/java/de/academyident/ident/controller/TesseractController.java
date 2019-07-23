@@ -6,12 +6,14 @@ import de.academyident.ident.util.DeutscherAusweisOCR;
 import de.academyident.ident.util.SaveFile;
 import de.academyident.ident.util.SubbildErsteller;
 import de.academyident.ident.util.TesseractIdent;
+import org.bytedeco.opencv.presets.opencv_core;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.print.DocFlavor;
 import java.io.File;
 import java.util.HashMap;
 
@@ -32,9 +34,21 @@ public class TesseractController {
 
         subbildErsteller.erstelleMaschinenlesbareZone("src\\main\\resources\\tesseract\\Perso_Back.jpg");
 
-        String fulltext = TesseractIdent.leseTextaus(new File("src\\main\\resources\\tesseract\\maschinenLesbareZone.jpg"));
+        String maschinenlesbareZone = TesseractIdent.leseTextaus(
+                new File("src\\main\\resources\\tesseract\\maschinenLesbareZone.jpg"));
 
-        DeutscherAusweisOCR deutscherAusweisOCR = new DeutscherAusweisOCR(fulltext);
+        subbildErsteller.erstelleAdresse("src\\main\\resources\\tesseract\\Perso_Back.jpg");
+
+        String adresse = TesseractIdent.leseTextaus(
+                new File("src\\main\\resources\\tesseract\\adresse.jpg"));
+
+        subbildErsteller.erstelleGeburtsort("src\\main\\resources\\tesseract\\Perso_Front.jpg");
+
+        String geburtsort = TesseractIdent.leseTextaus(
+                new File("src\\main\\resources\\tesseract\\geburtsort.jpg"));
+
+
+        DeutscherAusweisOCR deutscherAusweisOCR = new DeutscherAusweisOCR(maschinenlesbareZone, adresse, geburtsort);
 
         HashMap<String, String> ergebnisMap = deutscherAusweisOCR.getResultMap();
 
@@ -49,6 +63,11 @@ public class TesseractController {
         dokument.setStaatsangehoerigkeit(ergebnisMap.get("herkunftsland"));
         dokument.setGeburtsDatum(ergebnisMap.get("geburtsdatum"));
         dokument.setAusweisId(ergebnisMap.get("ausweisnummer"));
+        dokument.setGeburtsOrt(ergebnisMap.get("geburtsort"));
+        dokument.setHausNr(Integer.parseInt(ergebnisMap.get("hausnr")));
+        dokument.setPlz(Integer.parseInt(ergebnisMap.get("plz")));
+        dokument.setStadt(ergebnisMap.get("stadt"));
+        dokument.setStrasse(ergebnisMap.get("strasse"));
     }
 }
 
