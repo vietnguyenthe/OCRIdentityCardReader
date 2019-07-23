@@ -5,21 +5,12 @@ import de.academyident.ident.util.DeutscherAusweisOCR;
 import de.academyident.ident.util.SaveFile;
 import de.academyident.ident.util.SubbildErsteller;
 import de.academyident.ident.util.TesseractIdent;
-import net.sourceforge.tess4j.Tesseract;
-import org.bytedeco.opencv.presets.opencv_core;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.awt.image.RescaleOp;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 
 @Controller
@@ -31,7 +22,8 @@ public class TesseractController {
                                  @ModelAttribute("tessImage") TesseractFile tesseractFile){
 
 
-        SaveFile.saveFileOnDisk(tesseractFile, "\\Perso_Back.jpg");
+        SaveFile.saveFrontOnDisk(tesseractFile, "\\Perso_Front.jpg");
+        SaveFile.saveBackOnDisk(tesseractFile, "\\Perso_Back.jpg");
 
         SubbildErsteller subbildErsteller = new SubbildErsteller();
 

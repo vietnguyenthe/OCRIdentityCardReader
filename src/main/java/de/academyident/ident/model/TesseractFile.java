@@ -6,13 +6,22 @@ import java.io.File;
 
 public class TesseractFile {
 
-    MultipartFile tessImage;
+    MultipartFile frontImage;
+    MultipartFile backImage;
 
-    public MultipartFile getTessImage() {
-        return tessImage;
+    public MultipartFile getFrontImage() {
+        return frontImage;
     }
 
-    public void setTessImage(MultipartFile tessImage) {
-        this.tessImage = tessImage;
+    public void setFrontImage(MultipartFile frontImage) {
+        this.frontImage = frontImage;
+    }
+
+    public MultipartFile getBackImage() {
+        return backImage;
+    }
+
+    public void setBackImage(MultipartFile backImage) {
+        this.backImage = backImage;
     }
 }

@@ -10,12 +10,31 @@ import java.nio.file.Paths;
 
 public class SaveFile {
 
-    public static void saveFileOnDisk(TesseractFile tesseractFile, String filename) {
+    public static void saveFrontOnDisk(TesseractFile tesseractFile, String filename) {
         String folder = "src\\main\\resources\\tesseract";
 
         byte[] bytes = null;
         try {
-            bytes = tesseractFile.getTessImage().getBytes();
+            bytes = tesseractFile.getFrontImage().getBytes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Path path = Paths.get(folder + "\\" + filename);
+
+        try {
+            Files.write(path, bytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveBackOnDisk(TesseractFile tesseractFile, String filename) {
+        String folder = "src\\main\\resources\\tesseract";
+
+        byte[] bytes = null;
+        try {
+            bytes = tesseractFile.getBackImage().getBytes();
         } catch (IOException e) {
             e.printStackTrace();
         }
