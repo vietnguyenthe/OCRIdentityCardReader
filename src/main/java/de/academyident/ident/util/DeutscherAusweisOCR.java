@@ -15,16 +15,47 @@ public class DeutscherAusweisOCR {
     private String thirdLine;
 
 
-    public DeutscherAusweisOCR(String OCRergebnis) {
+    public DeutscherAusweisOCR(String maschinellerText, String adresseText, String geburtsortText) {
 
-        nachLinienTrennen(OCRergebnis);
+        maschBerichLinienTrennen(maschinellerText);
         processLineOne(firstLine);
         processLineTwo(secondLine);
         processLineThree(thirdLine);
 
+        verarbeiteAdresse(adresseText);
+        verarbeiteGeburtsort(geburtsortText);
+
     }
 
-    private void nachLinienTrennen(String OCRresult) {
+    private void verarbeiteGeburtsort(String geburtsortText) {
+        List<String> zeilen = new ArrayList<String>(Arrays.asList(geburtsortText.split("\n")));
+
+        String zeileZwei = zeilen.get(1); // Geburtsort
+
+        resultMap.put("geburtsort", geburtsortText);
+    }
+
+    private void verarbeiteAdresse(String adresseText) {
+        List<String> zeilen = new ArrayList<String>(Arrays.asList(adresseText.split("\n")));
+
+        String zeileZwei = zeilen.get(1); // PLZ Stadt
+        String zeileDrei = zeilen.get(2); // Strasse Hausnummer
+
+        List<String> zeileZweiListe = new ArrayList<String>(Arrays.asList(zeileZwei.split(" ")));
+        List<String> zeileDreiListe = new ArrayList<String>(Arrays.asList(zeileDrei.split(" ")));
+
+        String plz = zeileZweiListe.get(0);
+        String stadt = zeileZweiListe.get(1);
+        String strasse = zeileDreiListe.get(0);
+        String hausnummer = zeileDreiListe.get(1);
+
+        resultMap.put("plz", plz);
+        resultMap.put("stadt", stadt);
+        resultMap.put("strasse", strasse);
+        resultMap.put("hausnummer", hausnummer);
+    }
+
+    private void maschBerichLinienTrennen(String OCRresult) {
         List<String> resultAsLines = new ArrayList<String>(Arrays.asList(OCRresult.split("\n")));
 
         firstLine = resultAsLines.get(0); // IDD<<1T220001293 - IDD Länderkürzel, Ausweisnummer (immer char am Start)
