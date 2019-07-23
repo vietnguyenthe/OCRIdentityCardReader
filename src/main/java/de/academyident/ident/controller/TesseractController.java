@@ -1,5 +1,6 @@
 package de.academyident.ident.controller;
 
+import de.academyident.ident.model.Personendokument;
 import de.academyident.ident.model.TesseractFile;
 import de.academyident.ident.util.DeutscherAusweisOCR;
 import de.academyident.ident.util.SaveFile;
@@ -28,8 +29,8 @@ public class TesseractController {
 
     @PostMapping(value = "/fileUpload")
     public String bearbeiteDaten(Model model,
-                                 @ModelAttribute("tessImage") TesseractFile tesseractFile){
-
+                                 @ModelAttribute("tessImage") TesseractFile tesseractFile,
+                                 @ModelAttribute("neueDokumentDaten") Personendokument dokument){
 
         SaveFile.saveFileOnDisk(tesseractFile, "\\Perso_Back.jpg");
 
@@ -45,8 +46,13 @@ public class TesseractController {
 
         System.out.println(ergebnisMap.toString());
 
+        dokument.setNachname(ergebnisMap.get("nachname"));
+        dokument.setVorname(ergebnisMap.get("vorname"));
+        dokument.setStaatsangehoerigkeit(ergebnisMap.get("herkunftsland"));
+        dokument.setGeburtsDatum(ergebnisMap.get("geburtsdatum"));
+        dokument.setAusweisId(ergebnisMap.get("ausweisnummer"));
 
-        return "tessPruefung";
+        return "pruefung";
     }
 }
 
