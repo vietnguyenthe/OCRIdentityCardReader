@@ -12,20 +12,21 @@ Die
 
 public class SubbildErsteller {
 
-    public BufferedImage erhalteRueckseite() {
+
+    public BufferedImage erhalteRueckseite(String path) {
         BufferedImage rueckseite = null;
         try {
-            rueckseite = ImageIO.read(new File("src/main/resources/tesseract/contrastTestImage.jpg"));
+            rueckseite = ImageIO.read(new File(path));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return rueckseite;
     }
 
-    public BufferedImage erhalteVorderseite() {
+    public BufferedImage erhalteVorderseite(String path) {
         BufferedImage vorderseite = null;
         try {
-            vorderseite = ImageIO.read(new File("src/main/resources/tesseract/Muster_des_Personalausweises_VS.jpg"));
+            vorderseite = ImageIO.read(new File(path));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -33,8 +34,8 @@ public class SubbildErsteller {
     }
 
     //Adresse wird gespeichert als Bild "adresse.jpg" im Ordner Tesseract
-    public void erstelleAdresse(){
-        BufferedImage rueckseite = erhalteRueckseite();
+    public void erstelleAdresse(String path){
+        BufferedImage rueckseite = erhalteRueckseite(path);
         try {
             BufferedImage adresse = rueckseite.getSubimage(
                     (int) (rueckseite.getWidth()*0.4),
@@ -51,8 +52,8 @@ public class SubbildErsteller {
 
 
     //Maschinenlesbare Zone wird gespeichert als Bild "maschinenLesbareZone.jpg" im Ordner Tesseract
-    public void erstelleMaschinenlesbareZone() {
-        BufferedImage rueckseite = erhalteRueckseite();
+    public void erstelleMaschinenlesbareZone(String path) {
+        BufferedImage rueckseite = erhalteRueckseite(path);
         try {
             BufferedImage maschinenLesbareZone = rueckseite.getSubimage(0, (int) (rueckseite.getHeight() * 0.6),
                     rueckseite.getWidth(), (int) (rueckseite.getHeight() * 0.4));
@@ -65,8 +66,8 @@ public class SubbildErsteller {
     }
 
     //AusweisID wird gespeichert als Bild "ausweisID.jpg" im Ordner Tesseract
-    public void erstelleAusweisID(){
-        BufferedImage vorderseite = erhalteVorderseite();
+    public void erstelleAusweisID(String path){
+        BufferedImage vorderseite = erhalteVorderseite(path);
         try {
             BufferedImage ausweisID = vorderseite.getSubimage((int) (vorderseite.getWidth() * 0.65),
                     (int) (vorderseite.getHeight() * 0),
@@ -82,8 +83,8 @@ public class SubbildErsteller {
 
 
     //Nachname wird gespeichert als Bild "nachname.jpg" im Ordner Tesseract
-    public void erstelleNachname() {
-        BufferedImage vorderseite = erhalteVorderseite();
+    public void erstelleNachname(String path) {
+        BufferedImage vorderseite = erhalteVorderseite(path);
         try {
             BufferedImage nachname = vorderseite.getSubimage((int) (vorderseite.getWidth() * 0.38),
                     (int) (vorderseite.getHeight() * 0.1),
@@ -98,8 +99,8 @@ public class SubbildErsteller {
     }
 
     //Vorname wird gespeichert als Bild "nachname.jpg" im Ordner Tesseract
-    public void erstelleVorname() {
-        BufferedImage vorderseite = erhalteVorderseite();
+    public void erstelleVorname(String path) {
+        BufferedImage vorderseite = erhalteVorderseite(path);
         try {
             BufferedImage vorname = vorderseite.getSubimage((int) (vorderseite.getWidth() * 0.38),
                     (int) (vorderseite.getHeight() * 0.28),
@@ -114,8 +115,8 @@ public class SubbildErsteller {
     }
 
     //Geburtstag wird gespeichert als Bild "geburtstag.jpg" im Ordner Tesseract
-    public void erstelleGeburtstag() {
-        BufferedImage vorderseite = erhalteVorderseite();
+    public void erstelleGeburtstag(String path) {
+        BufferedImage vorderseite = erhalteVorderseite(path);
         try {
             BufferedImage geburtstag = vorderseite.getSubimage(
                     (int) (vorderseite.getWidth() * 0.42),
@@ -131,8 +132,8 @@ public class SubbildErsteller {
     }
 
     //Staatsangehoerigkeit gespeichert als Bild "staatsangehoerigkeit.jpg" im Ordner Tesseract
-    public void erstelleStaatsangehoerigkeit() {
-        BufferedImage vorderseite = erhalteVorderseite();
+    public void erstelleStaatsangehoerigkeit(String path) {
+        BufferedImage vorderseite = erhalteVorderseite(path);
         try {
             BufferedImage staatsangehoerigkeit = vorderseite.getSubimage(
                     (int) (vorderseite.getWidth() * 0.42),
@@ -148,8 +149,8 @@ public class SubbildErsteller {
     }
 
     //Geburtsort gespeichert als Bild "geburtsort.jpg" im Ordner Tesseract
-    public void erstelleGeburtsort() {
-        BufferedImage vorderseite = erhalteVorderseite();
+    public void erstelleGeburtsort(String path) {
+        BufferedImage vorderseite = erhalteVorderseite(path);
         try {
             BufferedImage geburtsort = vorderseite.getSubimage(
                     (int) (vorderseite.getWidth() * 0.42),
