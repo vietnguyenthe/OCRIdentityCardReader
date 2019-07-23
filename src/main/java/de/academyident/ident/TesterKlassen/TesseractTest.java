@@ -17,16 +17,16 @@ public class TesseractTest {
 
     public static void main(String[] args) throws Exception {
 
-        String file = "src/main/resources/tesseract/Perso_Back_Zuschnitt.png";
+        String file = "src/main/resources/tesseract/adresse.jpg";
         Tesseract tesseract = new Tesseract();
         tesseract.setDatapath("src\\main\\resources\\tesseract");
 
-        BufferedImage bufferedImage = null;
-        try {
-            bufferedImage = ImageIO.read(new File("src/main/resources/tesseract/Perso_Back_Zuschnitt.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        BufferedImage bufferedImage = null;
+//        try {
+//            bufferedImage = ImageIO.read(new File("src/main/resources/tesseract/Perso_Back_Zuschnitt.png"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         String fulltext = null;
 
@@ -34,9 +34,9 @@ public class TesseractTest {
 
         System.out.println(fulltext);
 
-        DeutscherAusweisOCR deutscherAusweisOCR = new DeutscherAusweisOCR(fulltext);
-        HashMap<String, String> ergebnisMap = deutscherAusweisOCR.getResultMap();
-        System.out.println(ergebnisMap.toString());
+//        DeutscherAusweisOCR deutscherAusweisOCR = new DeutscherAusweisOCR(fulltext);
+//        HashMap<String, String> ergebnisMap = deutscherAusweisOCR.getResultMap();
+//        System.out.println(ergebnisMap.toString());
 
     }
 
