@@ -1,4 +1,4 @@
-package de.academyident.ident;
+package de.academyident.ident.TesterKlassen;
 
 import de.academyident.ident.util.DeutscherAusweisOCR;
 import net.sourceforge.tess4j.OCRResult;

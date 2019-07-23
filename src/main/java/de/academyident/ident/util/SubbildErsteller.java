@@ -1,4 +1,4 @@
-package de.academyident.ident;
+package de.academyident.ident.util;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
