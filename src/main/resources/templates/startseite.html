@@ -131,7 +131,10 @@
                 <div class="card-body">
                     <form th:action="@{/fileUpload}"
                           th:object="${tessImage}" method="post" enctype="multipart/form-data">
-                        <input th:field="*{tessImage}" type="file" name="tessPicture"/>
+                        Vorderseite:
+                        <input th:field="*{frontImage}" type="file" name="tessPicture"/>
+                        Rückseite:
+                        <input th:field="*{backImage}" type="file" name="tessPicture"/>
                         <button type="submit" class="btn btn-warning" id="startseite_tessInput">Submit</button>
                     </form>
                 </div>

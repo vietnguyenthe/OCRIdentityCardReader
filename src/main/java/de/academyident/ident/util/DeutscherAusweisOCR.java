@@ -44,6 +44,7 @@ public class DeutscherAusweisOCR {
         while (!Character.isLetter(ausweisnummer.charAt(0))) { // Ausweisnr startet immer mit einem Buchstaben
             ausweisnummer = ausweisnummer.substring(1);        // Fehlerhafte Zeichen vor der ID entfernen
         }
+
         resultMap.put("ausweisnummer", ausweisnummer);
 
         // TODO: Eventuell eine Prüfung bzgl. Länge der Nummer einbauen.
