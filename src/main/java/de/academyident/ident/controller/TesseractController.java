@@ -29,25 +29,29 @@ public class TesseractController {
 
         SaveFile.saveFileOnDisk(tesseractFile, "contrastTestImage.jpg");
 
-        BufferedImage bufferedImage = null;
-        try {
-            bufferedImage = ImageIO.read(new File("src/main/resources/tesseract/contrastTestImage.jpg"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-
-        RescaleOp op = new RescaleOp(1.2f, 0, null);
-        bufferedImage = op.filter(bufferedImage, bufferedImage);
-
-        File outputfile = new File("src/main/resources/tesseract/contrastTestImagesavedBrighter.jpg");
-        try {
-            ImageIO.write(bufferedImage, "jpg", outputfile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
 
         return "tessPruefung";
     }
 }
+
+
+// Diese Methonde kann die Brightness eines Bildes erhöhen. Der Float gibt dabei die % an (1.2 = 20%)
+//        BufferedImage bufferedImage = null;
+//        try {
+//            bufferedImage = ImageIO.read(new File("src/main/resources/tesseract/contrastTestImage.jpg"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//        RescaleOp op = new RescaleOp(1.2f, 0, null);
+//        bufferedImage = op.filter(bufferedImage, bufferedImage);
+//
+//        File outputfile = new File("src/main/resources/tesseract/contrastTestImagesavedBrighter.jpg");
+//        try {
+//            ImageIO.write(bufferedImage, "jpg", outputfile);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
