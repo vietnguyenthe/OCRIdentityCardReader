@@ -32,7 +32,7 @@ public class DeutscherAusweisOCR {
 
         String zeileZwei = zeilen.get(1); // Geburtsort
 
-        resultMap.put("geburtsort", geburtsortText);
+        resultMap.put("geburtsort", zeileZwei);
     }
 
     private void verarbeiteAdresse(String adresseText) {
@@ -40,6 +40,11 @@ public class DeutscherAusweisOCR {
 
         String zeileZwei = zeilen.get(1); // PLZ Stadt
         String zeileDrei = zeilen.get(2); // Strasse Hausnummer
+
+        zeileZwei = zeileZwei.replaceAll("[^a-zA-Z0-9\\-\" \"]", "")
+                             .trim();
+        zeileDrei = zeileDrei.replaceAll("[^a-zA-Z0-9\\-\" \"]", "")
+                             .trim();
 
         List<String> zeileZweiListe = new ArrayList<String>(Arrays.asList(zeileZwei.split(" ")));
         List<String> zeileDreiListe = new ArrayList<String>(Arrays.asList(zeileDrei.split(" ")));

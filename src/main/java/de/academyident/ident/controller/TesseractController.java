@@ -64,7 +64,7 @@ public class TesseractController {
         dokument.setGeburtsDatum(ergebnisMap.get("geburtsdatum"));
         dokument.setAusweisId(ergebnisMap.get("ausweisnummer"));
         dokument.setGeburtsOrt(ergebnisMap.get("geburtsort"));
-        dokument.setHausNr(Integer.parseInt(ergebnisMap.get("hausnr")));
+        dokument.setHausNr(Integer.parseInt(ergebnisMap.get("hausnummer")));
         dokument.setPlz(Integer.parseInt(ergebnisMap.get("plz")));
         dokument.setStadt(ergebnisMap.get("stadt"));
         dokument.setStrasse(ergebnisMap.get("strasse"));
