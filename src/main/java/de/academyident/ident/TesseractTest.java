@@ -15,7 +15,7 @@ import java.util.List;
 
 public class TesseractTest {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
         String file = "src/main/resources/tesseract/Perso_Back_Zuschnitt.png";
         Tesseract tesseract = new Tesseract();
@@ -29,7 +29,6 @@ public class TesseractTest {
         }
 
         String fulltext = null;
-
 
         fulltext = tesseract.doOCR(new File(file));
 
