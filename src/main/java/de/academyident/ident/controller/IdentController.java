@@ -48,7 +48,7 @@ public class IdentController {
             dokument.setDokumentIstEcht(true);
             return "pruefung";
         } else {
-            return "startseite";
+            return "redirect:/";
         }
     }
 
@@ -76,7 +76,7 @@ public class IdentController {
             return "ergebnis";
         }else{
             //hier muss noch auf eine Alternativseite verlinkt werden, falls der Datenbankabgleich negativ ist
-            return "startseite";
+            return "redirect:/";
         }
     }
     /*
