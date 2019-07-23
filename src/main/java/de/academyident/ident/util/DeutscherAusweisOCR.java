@@ -20,6 +20,7 @@ public class DeutscherAusweisOCR {
         nachLinienTrennen(OCRergebnis);
         processLineOne(firstLine);
         processLineTwo(secondLine);
+        processLineThree(thirdLine);
 
     }
 
@@ -52,26 +53,57 @@ public class DeutscherAusweisOCR {
         List<String> subStrings = new ArrayList<String>(Arrays.asList(line.split("<")));
         bereinigeSubstringListe(subStrings);
 
-        StringBuffer datum = new StringBuffer();
-        String datumUnformatiert = subStrings.get(0);
+        // Geburtsdatum
+        StringBuffer geburtsdatum = new StringBuffer();
+        String geburtsdatumUnformatiert = subStrings.get(0);
 
-        datum.append(datumUnformatiert.charAt(4));
-        datum.append(datumUnformatiert.charAt(5));
-        datum.append(".");
-        datum.append(datumUnformatiert.charAt(2));
-        datum.append(datumUnformatiert.charAt(3));
-        datum.append(".");
-        datum.append(datumUnformatiert.charAt(0));
-        datum.append(datumUnformatiert.charAt(1));
+        geburtsdatum.append(geburtsdatumUnformatiert.charAt(4));
+        geburtsdatum.append(geburtsdatumUnformatiert.charAt(5));
+        geburtsdatum.append(".");
+        geburtsdatum.append(geburtsdatumUnformatiert.charAt(2));
+        geburtsdatum.append(geburtsdatumUnformatiert.charAt(3));
+        geburtsdatum.append(".");
+        geburtsdatum.append(geburtsdatumUnformatiert.charAt(0));
+        geburtsdatum.append(geburtsdatumUnformatiert.charAt(1));
 
-        resultMap.put("geburtsdatum", datum.toString());
+        resultMap.put("geburtsdatum", geburtsdatum.toString());
 
 
+        // Ablaufdatum
+        StringBuffer ablaufdatum = new StringBuffer();
+        String ablaufdatumUnformatiert = subStrings.get(1);
+
+        ablaufdatum.append(ablaufdatumUnformatiert.charAt(4));
+        ablaufdatum.append(ablaufdatumUnformatiert.charAt(5));
+        ablaufdatum.append(".");
+        ablaufdatum.append(ablaufdatumUnformatiert.charAt(2));
+        ablaufdatum.append(ablaufdatumUnformatiert.charAt(3));
+        ablaufdatum.append(".");
+        ablaufdatum.append(ablaufdatumUnformatiert.charAt(0));
+        ablaufdatum.append(ablaufdatumUnformatiert.charAt(1));
+
+        resultMap.put("ablaufdatum", ablaufdatum.toString());
+
+        resultMap.put("gesamtpruefziffer", subStrings.get(2));
+
+        char herkunftslandID = ablaufdatumUnformatiert.charAt(7);
+        if (herkunftslandID == 'D') {
+            resultMap.put("herkunftsland", "Deutschland");
+        }
     }
 
     private void processLineThree(String line) {
         List<String> subStrings = new ArrayList<String>(Arrays.asList(line.split("<")));
         bereinigeSubstringListe(subStrings);
+
+        String nachname = subStrings.get(0);
+        resultMap.put("nachname", nachname);
+
+        StringBuffer vornameUndBeiname = new StringBuffer();
+        for (int i = 1; i < subStrings.size(); i++) {
+            vornameUndBeiname.append(subStrings.get(i));
+        }
+        resultMap.put("vorname", vornameUndBeiname.toString());
 
     }
 
