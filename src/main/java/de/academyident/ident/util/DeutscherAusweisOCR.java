@@ -30,7 +30,8 @@ public class DeutscherAusweisOCR {
     private void verarbeiteGeburtsort(String geburtsortText) {
         List<String> zeilen = new ArrayList<String>(Arrays.asList(geburtsortText.split("\n")));
 
-        String zeileZwei = zeilen.get(1); // Geburtsort
+        String zeileZwei = zeilen.get(1).replaceAll("[^A-Z0-9<]", "")
+                .trim(); // Geburtsort
 
         resultMap.put("geburtsort", zeileZwei);
     }
@@ -38,21 +39,45 @@ public class DeutscherAusweisOCR {
     private void verarbeiteAdresse(String adresseText) {
         List<String> zeilen = new ArrayList<String>(Arrays.asList(adresseText.split("\n")));
 
-        String zeileZwei = zeilen.get(1); // PLZ Stadt
-        String zeileDrei = zeilen.get(2); // Strasse Hausnummer
 
-        zeileZwei = zeileZwei.replaceAll("[^a-zA-Z0-9\\-\" \"]", "")
+        String zeilePLZstadt = "00000 Unleserlich"; // PLZ Stadt
+        String zeileStrasseHausNr = "Unleserlich 00"; // Strasse Hausnummer
+
+        if (zeilen.size() >= 3) {               //
+            zeilePLZstadt = zeilen.get(1);      // Nur wenn alle drei Zeilen erkannt wurden, wird etwas eingelesen
+            zeileStrasseHausNr = zeilen.get(2); //
+        }
+
+        zeilePLZstadt = zeilePLZstadt.replaceAll("[^a-zA-Z0-9\\-\" \"]", "")
                              .trim();
-        zeileDrei = zeileDrei.replaceAll("[^a-zA-Z0-9\\-\" \"]", "")
+        zeileStrasseHausNr = zeileStrasseHausNr.replaceAll("[^a-zA-Z0-9\\-\" \"]", "")
                              .trim();
 
-        List<String> zeileZweiListe = new ArrayList<String>(Arrays.asList(zeileZwei.split(" ")));
-        List<String> zeileDreiListe = new ArrayList<String>(Arrays.asList(zeileDrei.split(" ")));
+        List<String> plzStadtListe = new ArrayList<String>(Arrays.asList(zeilePLZstadt.split(" ")));
+        List<String> strasseHausNrListe = new ArrayList<String>(Arrays.asList(zeileStrasseHausNr.split(" ")));
 
-        String plz = zeileZweiListe.get(0);
-        String stadt = zeileZweiListe.get(1);
-        String strasse = zeileDreiListe.get(0);
-        String hausnummer = zeileDreiListe.get(1);
+
+        String plz = "00000";
+        String stadt = "Unleserlich";
+        for (int i = 0; i < plzStadtListe.size();i++) {
+            if (plzStadtListe.get(i).length() == 5) {
+                plz = plzStadtListe.get(i);
+                stadt = plzStadtListe.get(i+1);
+                break;
+            }
+        }
+
+        String strasse = "Unleserlich";strasseHausNrListe.get(0);
+        String hausnummer = "00"; strasseHausNrListe.get(1);
+
+        for (int i = 0; i < strasseHausNrListe.size();i++) {
+            if (strasseHausNrListe.get(i).length() > 5) {
+                strasse = strasseHausNrListe.get(i);
+                hausnummer = strasseHausNrListe.get(i+1);
+                break;
+            }
+        }
+
 
         resultMap.put("plz", plz);
         resultMap.put("stadt", stadt);
@@ -69,6 +94,7 @@ public class DeutscherAusweisOCR {
     }
 
     private void processLineOne(String line) {
+        line = line.replaceAll("[^A-Z0-9<]", "").trim();
         List<String> subStrings = new ArrayList<String>(Arrays.asList(line.split("<")));
         bereinigeSubstringListe(subStrings);
 
@@ -87,6 +113,7 @@ public class DeutscherAusweisOCR {
     }
 
     private void processLineTwo(String line) {
+        line = line.replaceAll("[^A-Z0-9<]", "").trim();
         List<String> subStrings = new ArrayList<String>(Arrays.asList(line.split("<")));
         bereinigeSubstringListe(subStrings);
 
@@ -130,6 +157,8 @@ public class DeutscherAusweisOCR {
     }
 
     private void processLineThree(String line) {
+        line = line.replaceAll("[^A-Z0-9<]", "").trim();
+
         List<String> subStrings = new ArrayList<String>(Arrays.asList(line.split("<")));
         bereinigeSubstringListe(subStrings);
 

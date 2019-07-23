@@ -35,11 +35,15 @@ public class IdentApplication {
         BundesDatenbank peterWeiss = new BundesDatenbank("Peter", "Weiss","blabla",
                 2, 11111, "Koeln", "deutsch", "00000", "13.01.1990",
                 "Hamburg");
+        BundesDatenbank erikaMustermann = new BundesDatenbank("ERIKA", "MUSTERMANN","blabla",
+                2, 11111, "Koeln", "deutsch", "00000", "13.01.1990",
+                "Hamburg");
         bundesDatenbankRepo.save(florianWeiss);
         bundesDatenbankRepo.save(vietNg);
         bundesDatenbankRepo.save(oliverHock);
         bundesDatenbankRepo.save(peterWeiss);
         bundesDatenbankRepo.save(peterMaier);
+        bundesDatenbankRepo.save(erikaMustermann);
     }
 
 }
