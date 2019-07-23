@@ -103,7 +103,7 @@ public class DeutscherAusweisOCR {
         for (int i = 1; i < subStrings.size(); i++) {
             vornameUndBeiname.append(subStrings.get(i));
         }
-        resultMap.put("vorname", vornameUndBeiname.toString());
+        resultMap.put("vorname", vornameUndBeiname.toString() );
 
     }
 
