@@ -40,7 +40,7 @@ public class SubbildErsteller {
             BufferedImage adresse = rueckseite.getSubimage(
                     (int) (rueckseite.getWidth()*0.4),
                     (int) (rueckseite.getHeight() * 0),
-                    (int) (rueckseite.getWidth()*0.6),
+                    (int) (rueckseite.getWidth()*0.4),
                     (int) (rueckseite.getHeight() * 0.3));
             File adresseBeispiel =
                     new File("src\\main\\resources\\tesseract\\adresse.jpg");
