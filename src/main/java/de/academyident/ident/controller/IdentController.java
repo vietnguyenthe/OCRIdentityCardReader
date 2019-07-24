@@ -86,15 +86,4 @@ public class IdentController {
             return "redirect:/";
         }
     }
-    /*
-     * TODO: BONUS: Bei false zurück auf die erste View mit Fehlermeldung
-     * */
-
-    /*
-     * TODO: BONUS: Bei false Fehlermeldung anzeigen.
-     *  */
-
-
-
-
 }
