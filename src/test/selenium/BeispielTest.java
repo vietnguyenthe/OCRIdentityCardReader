@@ -59,7 +59,7 @@ public class BeispielTest {
         startseite_vorname.sendKeys("Florian");
 
         WebElement startseite_nachname = driver.findElement(By.id("startseite_nachname"));
-        startseite_nachname.sendKeys("Weiss");
+        startseite_nachname.sendKeys("Weiß");
 
         WebElement startseite_strasse = driver.findElement(By.id("startseite_strasse"));
         startseite_strasse.sendKeys("Musterweg");
@@ -123,7 +123,7 @@ public class BeispielTest {
         startseite_vorname.sendKeys("Florian");
 
         WebElement startseite_nachname = driver.findElement(By.id("startseite_nachname"));
-        startseite_nachname.sendKeys("Weiss");
+        startseite_nachname.sendKeys("Weiß");
 
         WebElement startseite_strasse = driver.findElement(By.id("startseite_strasse"));
         startseite_strasse.sendKeys("Musterweg");
@@ -181,6 +181,7 @@ public class BeispielTest {
         btnDatenBearbeitenBestaetigen.click();
 
         // Pruefungsseite - Eingaben positiv bestätigen
+        jse.executeScript("window.scrollBy(0,150)");
 
 
         WebElement btnBestaetigen = driver.findElement(By.id("pruefung_datenBestaetigen"));
@@ -304,7 +305,9 @@ public class BeispielTest {
     }
 
     @Test
-    public void caseErikaMustermann() {
+    public void caseErikaMustermannPerfekt() {
+        driver.get("http://localhost:8080");
+
 
         // Startseite - Formular öffnen und mit Text befüllen
         WebElement btn = driver.findElement(By.id("startseite_InputOCR"));
@@ -313,9 +316,88 @@ public class BeispielTest {
         waitForAction(1.0);
 
         WebElement file_vorn = driver.findElement(By.id("startseite_file_vorn"));
-        file_vorn.click();
+        file_vorn.sendKeys("C:\\Users\\Viet\\Desktop\\ProjekteOrdner\\postident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_VS.jpg");
 
+        WebElement file_hinten = driver.findElement(By.id("startseite_file_hinten"));
+        file_hinten.sendKeys("C:\\Users\\Viet\\Desktop\\ProjekteOrdner\\postident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_RS.jpg");
 
+        WebElement btnSubmit = driver.findElement(By.id("startseite_tessInput"));
+        waitForAction(2.0);
+        btnSubmit.click();
+
+        // Pruefungsseite - Eingaben positiv bestätigen
+
+        WebElement btnBestaetigen = driver.findElement(By.id("pruefung_datenBestaetigen"));
+        waitForAction(2.0);
+
+        // Scrollt die Seite runter
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("window.scrollBy(0,150)");
+        waitForAction(2.0);
+
+        btnBestaetigen.click();
+        waitForAction(2.0);
     }
+
+    @Test
+    public void caseErikaMustermannNichtErfolgreich() {
+        driver.get("http://localhost:8080");
+
+
+        // Startseite - Formular öffnen und mit Text befüllen
+        WebElement btn = driver.findElement(By.id("startseite_InputOCR"));
+        waitForAction(2.0);
+        btn.click();
+        waitForAction(1.0);
+
+        WebElement file_vorn = driver.findElement(By.id("startseite_file_vorn"));
+        file_vorn.sendKeys("C:\\Users\\Viet\\Desktop\\ProjekteOrdner\\postident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_VS.jpg");
+
+        WebElement file_hinten = driver.findElement(By.id("startseite_file_hinten"));
+        file_hinten.sendKeys("C:\\Users\\Viet\\Desktop\\ProjekteOrdner\\postident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_RS.jpg");
+
+        WebElement btnSubmit = driver.findElement(By.id("startseite_tessInput"));
+        waitForAction(2.0);
+        btnSubmit.click();
+
+        // Pruefungsseite - Eingaben positiv bestätigen
+
+        WebElement btnBestaetigen = driver.findElement(By.id("pruefung_datenBestaetigen"));
+        waitForAction(2.0);
+
+        // Scrollt die Seite runter
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("window.scrollBy(0,150)");
+        waitForAction(2.0);
+
+        WebElement btnDatenBearbeiten = driver.findElement(By.id("pruefung_datenBearbeiten"));
+        waitForAction(2.0);
+        btnDatenBearbeiten.click();
+
+//Bearbeitungsseite - Eingaben abändern und bestätigen
+        // Pruefungsseite - Eingaben positiv bestätigen
+
+        waitForAction(1.0);
+        jse.executeScript("window.scrollBy(0,150)");
+
+        waitForAction(2.0);
+        WebElement bearbeitung_vorname = driver.findElement(By.id("bearbeitung_vorname"));
+        bearbeitung_vorname.clear();
+        bearbeitung_vorname.sendKeys("Florian");
+
+        WebElement btnDatenBearbeitenBestaetigen = driver.findElement(By.id("bearbeitung_bestaetigen"));
+        waitForAction(2.0);
+        btnDatenBearbeitenBestaetigen.click();
+
+        // Pruefungsseite - Eingaben positiv bestätigen
+        jse.executeScript("window.scrollBy(0,150)");
+        waitForAction(2.0);
+
+        WebElement btnBestaetigenPruefung = driver.findElement(By.id("pruefung_datenBestaetigen"));
+        waitForAction(2.0);
+        btnBestaetigenPruefung.click();
+        waitForAction(2.0);
+    }
+
 
 }
