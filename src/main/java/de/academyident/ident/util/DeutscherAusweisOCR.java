@@ -14,17 +14,26 @@ public class DeutscherAusweisOCR {
     private String secondLine;
     private String thirdLine;
 
+    String zeilePLZstadt = "00000 Unleserlich"; // PLZ Stadt
+    String zeileStrasseHausNr = "Unleserlich 00"; // Strasse Hausnummer
+
+    String plz = "00000";
+    String stadt = "Unleserlich";
+    String strasse = "Unleserlich";
+    String hausnummer = "00";
 
     public DeutscherAusweisOCR(String maschinellerText, String adresseText, String geburtsortText) {
 
-        maschBerichLinienTrennen(maschinellerText);
+        // Maschineller Bereich, der für OCR optimiert ist (Schriftart, Abstände, Größe)
+        maschBereichLinienTrennen(maschinellerText);
         processLineOne(firstLine);
         processLineTwo(secondLine);
         processLineThree(thirdLine);
 
+        // Bildausschnitt anderer Bereiche
+        // In diesen Bereichen wird eine höhere Fehlerrate erwartet, da diese nicht optimiert sind
         verarbeiteAdresse(adresseText);
         verarbeiteGeburtsort(geburtsortText);
-
     }
 
     private void verarbeiteGeburtsort(String geburtsortText) {
@@ -33,21 +42,31 @@ public class DeutscherAusweisOCR {
         String zeileZwei = zeilen.get(1).replaceAll("[^A-Z0-9<]", "")
                 .trim(); // Geburtsort
 
+        zeileZwei = toLowercaseButFirstChar(zeileZwei);
+
         resultMap.put("geburtsort", zeileZwei);
     }
 
     private void verarbeiteAdresse(String adresseText) {
         List<String> zeilen = new ArrayList<String>(Arrays.asList(adresseText.split("\n")));
 
+        // Entfernt überflüssige Zeilen, die zu kurz sind, um den benötigen Inhalt zu haben
+        List<String> zeilenLoeschen = new ArrayList<>();
+        for (String zeile: zeilen) {
+            if (zeile.length() < 5) {
+                zeilenLoeschen.add(zeile);
+            }
+        }
+        zeilen.removeAll(zeilenLoeschen);
 
-        String zeilePLZstadt = "00000 Unleserlich"; // PLZ Stadt
-        String zeileStrasseHausNr = "Unleserlich 00"; // Strasse Hausnummer
-
-        if (zeilen.size() == 3) {               //
-            zeilePLZstadt = zeilen.get(1);      // Nur wenn alle drei Zeilen erkannt wurden, wird etwas eingelesen
-            zeileStrasseHausNr = zeilen.get(2); //
+        // Nur bei drei Zeilen wir versucht die ausgelesenen Date zu verwenden, da dies das optimale Ergebnis sein sollte
+        // Mehr oder weniger Zeilen deuten auf einen Verlust oder schwer auslesbare Daten hin
+        if (zeilen.size() == 3) {
+            zeilePLZstadt = zeilen.get(1);
+            zeileStrasseHausNr = zeilen.get(2);
         }
 
+        // Die Zeilen werden um alle Sonderzeichen bereinigt, außer Bindestriche wegen Straßennamen
         zeilePLZstadt = zeilePLZstadt.replaceAll("[^a-zA-Z0-9\\-\" \"]", "")
                              .trim();
         zeileStrasseHausNr = zeileStrasseHausNr.replaceAll("[^a-zA-Z0-9\\-\" \"]", "")
@@ -56,9 +75,8 @@ public class DeutscherAusweisOCR {
         List<String> plzStadtListe = new ArrayList<String>(Arrays.asList(zeilePLZstadt.split(" ")));
         List<String> strasseHausNrListe = new ArrayList<String>(Arrays.asList(zeileStrasseHausNr.split(" ")));
 
-
-        String plz = "00000";
-        String stadt = "Unleserlich";
+        // Es wird nach der PLZ gesucht, Kriterium ist hierbei nur die Länge
+        // Die Hausnummer wir direkt als folgendes Element erwartet und ausgewertet
         for (int i = 0; i < plzStadtListe.size();i++) {
             if (plzStadtListe.get(i).length() == 5) {
                 plz = plzStadtListe.get(i);
@@ -67,9 +85,7 @@ public class DeutscherAusweisOCR {
             }
         }
 
-        String strasse = "Unleserlich";
-        String hausnummer = "00";
-
+        // Es wird davon ausgegangen, dass Straßennamen eine Mindestlänge von 5 haben und die Hausnummer direkt darauf folgt
         for (int i = 0; i < strasseHausNrListe.size();i++) {
             if (strasseHausNrListe.get(i).length() > 5) {
                 strasse = strasseHausNrListe.get(i);
@@ -78,6 +94,8 @@ public class DeutscherAusweisOCR {
             }
         }
 
+        stadt = toLowercaseButFirstChar(stadt);
+        strasse = toLowercaseButFirstChar(strasse);
 
         resultMap.put("plz", plz);
         resultMap.put("stadt", stadt);
@@ -85,8 +103,8 @@ public class DeutscherAusweisOCR {
         resultMap.put("hausnummer", hausnummer);
     }
 
-    private void maschBerichLinienTrennen(String OCRresult) {
-        List<String> resultAsLines = new ArrayList<String>(Arrays.asList(OCRresult.split("\n")));
+    private void maschBereichLinienTrennen(String OCRresult) {
+        List<String> resultAsLines = new ArrayList<>(Arrays.asList(OCRresult.split("\n")));
 
         firstLine = resultAsLines.get(0); // IDD<<1T220001293 - IDD Länderkürzel, Ausweisnummer (immer char am Start)
         secondLine = resultAsLines.get(1); // Geburtsdatum (YYMMDD), Gültigkeit (YYMMDD), Prüfziffer, Herkunftsland
@@ -106,6 +124,7 @@ public class DeutscherAusweisOCR {
         while (!Character.isLetter(ausweisnummer.charAt(0))) { // Ausweisnr startet immer mit einem Buchstaben
             ausweisnummer = ausweisnummer.substring(1);        // Fehlerhafte Zeichen vor der ID entfernen
         }
+        ausweisnummer = ausweisnummer.substring(0,9); // entfernt die Prüfziffer und ggf. zusätzlich char am Ende
 
         resultMap.put("ausweisnummer", ausweisnummer);
 
@@ -163,11 +182,14 @@ public class DeutscherAusweisOCR {
         bereinigeSubstringListe(subStrings);
 
         String nachname = subStrings.get(0);
+        nachname = toLowercaseButFirstChar(nachname);
         resultMap.put("nachname", nachname);
 
         StringBuffer vornameUndBeiname = new StringBuffer();
         for (int i = 1; i < subStrings.size(); i++) {
-            vornameUndBeiname.append(subStrings.get(i));
+            String name = subStrings.get(i);
+            name = toLowercaseButFirstChar(name);
+            vornameUndBeiname.append(name);
         }
         resultMap.put("vorname", vornameUndBeiname.toString() );
 
@@ -184,6 +206,11 @@ public class DeutscherAusweisOCR {
         }
 
         subStrings.removeAll(zuEntfernen);
+    }
+
+    private String toLowercaseButFirstChar(String string) {
+        string = string.charAt(0) + string.substring(1).toLowerCase();
+        return string;
     }
 
     public HashMap<String, String> getResultMap() {
