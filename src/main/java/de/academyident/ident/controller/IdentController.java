@@ -5,6 +5,7 @@ import de.academyident.ident.model.Personendokument;
 import de.academyident.ident.model.TesseractFile;
 import de.academyident.ident.repository.BundesDatenbankRepo;
 import de.academyident.ident.repository.PersonendokumentRepo;
+import de.academyident.ident.util.LokaleBilddateien;
 import de.academyident.ident.util.Validierung;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -73,6 +75,11 @@ public class IdentController {
         bundesDatenbank = bundesDatenbankRepo.findAll();
         if(Validierung.pruefeObRealePerson(dokument, bundesDatenbank)){
             personendokumentRepo.save(dokument);
+
+            List<String> dateien = new ArrayList<>(Arrays.asList("src\\main\\resources\\tesseract\\Perso_Back.jpg",
+                                                                 "src\\main\\resources\\tesseract\\Perso_Front.jpg"));
+            LokaleBilddateien.loeschen(dateien);
+
             return "ergebnis";
         }else{
             //hier muss noch auf eine Alternativseite verlinkt werden, falls der Datenbankabgleich negativ ist

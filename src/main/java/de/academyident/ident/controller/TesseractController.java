@@ -2,10 +2,7 @@ package de.academyident.ident.controller;
 
 import de.academyident.ident.model.Personendokument;
 import de.academyident.ident.model.TesseractFile;
-import de.academyident.ident.util.DeutscherAusweisOCR;
-import de.academyident.ident.util.SaveFile;
-import de.academyident.ident.util.SubbildErsteller;
-import de.academyident.ident.util.TesseractIdent;
+import de.academyident.ident.util.*;
 import org.bytedeco.opencv.presets.opencv_core;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +12,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.print.DocFlavor;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller
 @SessionAttributes("neueDokumentDaten")
@@ -54,8 +56,15 @@ public class TesseractController {
 
         ocrModelMapping(dokument, ergebnisMap);
 
+        List<String> dateien = new ArrayList<>(Arrays.asList("src\\main\\resources\\tesseract\\adresse.jpg",
+                                                             "src\\main\\resources\\tesseract\\geburtsort.jpg",
+                                                             "src\\main\\resources\\tesseract\\maschinenLesbareZone.jpg"));
+        LokaleBilddateien.loeschen(dateien);
+
         return "pruefung";
     }
+
+
 
     private void ocrModelMapping(@ModelAttribute("neueDokumentDaten") Personendokument dokument, HashMap<String, String> ergebnisMap) {
         dokument.setNachname(ergebnisMap.get("nachname"));

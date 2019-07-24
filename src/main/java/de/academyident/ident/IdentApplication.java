@@ -20,7 +20,7 @@ public class IdentApplication {
 
     @PostConstruct
     public void ausfuellenDB(){
-        BundesDatenbank florianWeiss = new BundesDatenbank("Florian", "Weiss","blabla",
+        BundesDatenbank florianWeiss = new BundesDatenbank("Florian", "Weiß","blabla",
         2, 11111, "Koeln", "deutsch", "00000", "13.01.1990",
                 "Hamburg");
         BundesDatenbank vietNg = new BundesDatenbank("Viet", "Ng","blabla",
@@ -35,7 +35,7 @@ public class IdentApplication {
         BundesDatenbank peterWeiss = new BundesDatenbank("Peter", "Weiss","blabla",
                 2, 11111, "Koeln", "deutsch", "00000", "13.01.1990",
                 "Hamburg");
-        BundesDatenbank erikaMustermann = new BundesDatenbank("ERIKA", "MUSTERMANN","blabla",
+        BundesDatenbank erikaMustermann = new BundesDatenbank("Erika", "Mustermann","blabla",
                 2, 11111, "Koeln", "deutsch", "00000", "13.01.1990",
                 "Hamburg");
         bundesDatenbankRepo.save(florianWeiss);
