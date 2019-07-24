@@ -34,20 +34,20 @@ public class TesseractController {
 
         SubbildErsteller subbildErsteller = new SubbildErsteller();
 
-        subbildErsteller.erstelleMaschinenlesbareZone("src\\main\\resources\\tesseract\\Perso_Back.jpg");
+        subbildErsteller.erstelleMaschinenlesbareZone("src\\main\\resources\\static\\img\\Perso_Back.jpg");
 
         String maschinenlesbareZone = TesseractIdent.leseTextaus(
-                new File("src\\main\\resources\\tesseract\\maschinenLesbareZone.jpg"));
+                new File("src\\main\\resources\\static\\img\\maschinenLesbareZone.jpg"));
 
-        subbildErsteller.erstelleAdresse("src\\main\\resources\\tesseract\\Perso_Back.jpg");
+        subbildErsteller.erstelleAdresse("src\\main\\resources\\static\\img\\Perso_Back.jpg");
 
         String adresse = TesseractIdent.leseTextaus(
-                new File("src\\main\\resources\\tesseract\\adresse.jpg"));
+                new File("src\\main\\resources\\static\\img\\adresse.jpg"));
 
-        subbildErsteller.erstelleGeburtsort("src\\main\\resources\\tesseract\\Perso_Front.jpg");
+        subbildErsteller.erstelleGeburtsort("src\\main\\resources\\static\\img\\Perso_Front.jpg");
 
         String geburtsort = TesseractIdent.leseTextaus(
-                new File("src\\main\\resources\\tesseract\\geburtsort.jpg"));
+                new File("src\\main\\resources\\static\\img\\geburtsort.jpg"));
 
 
         DeutscherAusweisOCR deutscherAusweisOCR = new DeutscherAusweisOCR(maschinenlesbareZone, adresse, geburtsort);
@@ -56,9 +56,9 @@ public class TesseractController {
 
         ocrModelMapping(dokument, ergebnisMap);
 
-        List<String> dateien = new ArrayList<>(Arrays.asList("src\\main\\resources\\tesseract\\adresse.jpg",
-                                                             "src\\main\\resources\\tesseract\\geburtsort.jpg",
-                                                             "src\\main\\resources\\tesseract\\maschinenLesbareZone.jpg"));
+        List<String> dateien = new ArrayList<>(Arrays.asList("src\\main\\resources\\static\\img\\adresse.jpg",
+                                                             "src\\main\\resources\\static\\img\\geburtsort.jpg",
+                                                             "src\\main\\resources\\static\\img\\maschinenLesbareZone.jpg"));
         LokaleBilddateien.loeschen(dateien);
 
         return "pruefung";

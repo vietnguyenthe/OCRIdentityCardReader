@@ -39,7 +39,7 @@ public class SubbildErsteller {
                     (int) (rueckseite.getWidth()*0.4),
                     (int) (rueckseite.getHeight() * 0.3));
             File adresseBeispiel =
-                    new File("src\\main\\resources\\tesseract\\adresse.jpg");
+                    new File("src\\main\\resources\\static\\img\\adresse.jpg");
             ImageIO.write(adresse, "jpg", adresseBeispiel);
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class SubbildErsteller {
             BufferedImage maschinenLesbareZone = rueckseite.getSubimage(0, (int) (rueckseite.getHeight() * 0.6),
                     rueckseite.getWidth(), (int) (rueckseite.getHeight() * 0.4));
             File maschinenLesbareZoneBeispiel =
-                    new File("src\\main\\resources\\tesseract\\maschinenLesbareZone.jpg");
+                    new File("src\\main\\resources\\static\\img\\maschinenLesbareZone.jpg");
             ImageIO.write(maschinenLesbareZone, "jpg", maschinenLesbareZoneBeispiel);
         } catch (IOException e) {
             e.printStackTrace();
@@ -70,7 +70,7 @@ public class SubbildErsteller {
                     (int) (vorderseite.getWidth() * 0.35),
                     (int) (vorderseite.getHeight() * 0.15));
             File ausweisIDBeispiel =
-                    new File("src\\main\\resources\\tesseract\\ausweisID.jpg");
+                    new File("src\\main\\resources\\static\\img\\ausweisID.jpg");
             ImageIO.write(ausweisID, "jpg", ausweisIDBeispiel);
         } catch (IOException e) {
             e.printStackTrace();
@@ -87,7 +87,7 @@ public class SubbildErsteller {
                     (int) (vorderseite.getWidth() * 0.46),
                     (int) (vorderseite.getHeight() * 0.2));
             File nachnameBeispiel =
-                    new File("src\\main\\resources\\tesseract\\nachname.jpg");
+                    new File("src\\main\\resources\\static\\img\\nachname.jpg");
             ImageIO.write(nachname, "jpg", nachnameBeispiel);
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,7 +103,7 @@ public class SubbildErsteller {
                     (int) (vorderseite.getWidth() * 0.46),
                     (int) (vorderseite.getHeight() * 0.12));
             File vornameBeispiel =
-                    new File("src\\main\\resources\\tesseract\\vorname.jpg");
+                    new File("src\\main\\resources\\static\\img\\vorname.jpg");
             ImageIO.write(vorname, "jpg", vornameBeispiel);
         } catch (IOException e) {
             e.printStackTrace();
@@ -120,7 +120,7 @@ public class SubbildErsteller {
                     (int) (vorderseite.getWidth() * 0.26),
                     (int) (vorderseite.getHeight() * 0.12));
             File geburtstagBeispiel =
-                    new File("src\\main\\resources\\tesseract\\geburtstag.jpg");
+                    new File("src\\main\\resources\\static\\img\\geburtstag.jpg");
             ImageIO.write(geburtstag, "jpg", geburtstagBeispiel);
         } catch (IOException e) {
             e.printStackTrace();
@@ -137,7 +137,7 @@ public class SubbildErsteller {
                     (int) (vorderseite.getWidth() * 0.26),
                     (int) (vorderseite.getHeight() * 0.12));
             File staatsangehoerigkeitBeispiel =
-                    new File("src\\main\\resources\\tesseract\\staatsangehoerigkeit.jpg");
+                    new File("src\\main\\resources\\static\\img\\staatsangehoerigkeit.jpg");
             ImageIO.write(staatsangehoerigkeit, "jpg", staatsangehoerigkeitBeispiel);
         } catch (IOException e) {
             e.printStackTrace();
@@ -154,7 +154,7 @@ public class SubbildErsteller {
                     (int) (vorderseite.getWidth() * 0.5),
                     (int) (vorderseite.getHeight() * 0.12));
             File geburtsortBeispiel =
-                    new File("src\\main\\resources\\tesseract\\geburtsort.jpg");
+                    new File("src\\main\\resources\\static\\img\\geburtsort.jpg");
             ImageIO.write(geburtsort, "jpg", geburtsortBeispiel);
         } catch (IOException e) {
             e.printStackTrace();
