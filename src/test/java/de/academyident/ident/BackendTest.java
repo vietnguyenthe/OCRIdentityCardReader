@@ -203,5 +203,23 @@ Test der Klasse SubbildErsteller
     Test der Klasse DeutscherAusweisOCR
      */
 
+     @Test
+    public void deutscherAusweisOCROK(){
+         String maschinenbereich = "IDD<<T220001293<<<<<<<<<<<<<<< \n"+ "6408125<2010315D<<<<<<<<<<<<<4 \n" +
+                 "MUSTERMANN<<ERIKA<<<<<<<<<<<<<";
+         String adresse = "Anschrift \n" + "51147 KOLN \n" + "HETIDESTRASSE 17\n";
+         String geburtsort ="Geburtsort \n"+ "BERLIN";
+         DeutscherAusweisOCR deutscherAusweisOCR = new DeutscherAusweisOCR(maschinenbereich,adresse,geburtsort);
+         Assert.assertEquals(deutscherAusweisOCR.getResultMap().get("geburtsort"),"Berlin");
+         Assert.assertEquals(deutscherAusweisOCR.getResultMap().get("plz"),"51147");
+         Assert.assertEquals(deutscherAusweisOCR.getResultMap().get("stadt"),"Koln");
+         Assert.assertEquals(deutscherAusweisOCR.getResultMap().get("strasse"),"Hetidestrasse");
+         Assert.assertEquals(deutscherAusweisOCR.getResultMap().get("hausnummer"),"17");
+         Assert.assertEquals(deutscherAusweisOCR.getResultMap().get("herkunftsland"),"Deutschland");
+         Assert.assertEquals(deutscherAusweisOCR.getResultMap().get("nachname"),"Mustermann");
+         Assert.assertEquals(deutscherAusweisOCR.getResultMap().get("vorname"),"Erika");
+
+     }
+
 }
 

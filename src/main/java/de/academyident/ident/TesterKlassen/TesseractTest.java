@@ -17,7 +17,7 @@ public class TesseractTest {
 
     public static void main(String[] args) throws Exception {
 
-        String file = "src/main/resources/tesseract/adresse.jpg";
+        String file = "src/main/resources/tesseract/geburtsort.jpg";
         Tesseract tesseract = new Tesseract();
         tesseract.setDatapath("src\\main\\resources\\tesseract");
 
