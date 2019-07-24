@@ -43,7 +43,7 @@ public class DeutscherAusweisOCR {
         String zeilePLZstadt = "00000 Unleserlich"; // PLZ Stadt
         String zeileStrasseHausNr = "Unleserlich 00"; // Strasse Hausnummer
 
-        if (zeilen.size() >= 3) {               //
+        if (zeilen.size() == 3) {               //
             zeilePLZstadt = zeilen.get(1);      // Nur wenn alle drei Zeilen erkannt wurden, wird etwas eingelesen
             zeileStrasseHausNr = zeilen.get(2); //
         }
@@ -67,8 +67,8 @@ public class DeutscherAusweisOCR {
             }
         }
 
-        String strasse = "Unleserlich";strasseHausNrListe.get(0);
-        String hausnummer = "00"; strasseHausNrListe.get(1);
+        String strasse = "Unleserlich";
+        String hausnummer = "00";
 
         for (int i = 0; i < strasseHausNrListe.size();i++) {
             if (strasseHausNrListe.get(i).length() > 5) {
