@@ -12,10 +12,7 @@ textarea{
     justify-content: center;
 }
 
-img{
- width: 200px;
-    height: 200px;
-}
+
 
 .centerItem {
     text-align: center;
@@ -26,6 +23,27 @@ img{
 }
 
 .fullpage {
-    height: 100vh;
+    height: 90vh;
 }
 
+.my-con {
+    border: 2px solid red;
+}
+
+.my-row {
+    border: 2px solid blue;
+}
+
+.my-col {
+    border: 2px solid green;
+}
+
+.img-responsive { width:100%; }
+
+td, th {
+    text-align: left;
+}
+
+/*.pruef-img{*/
+/*    width: 300px;*/
+/*}*/
