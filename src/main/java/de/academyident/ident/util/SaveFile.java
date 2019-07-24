@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 public class SaveFile {
 
     public static void saveFrontOnDisk(TesseractFile tesseractFile, String filename) {
-        String folder = "src\\main\\resources\\tesseract";
+        String folder = "src\\main\\resources\\static\\img";
 
         byte[] bytes = null;
         try {
@@ -30,7 +30,7 @@ public class SaveFile {
     }
 
     public static void saveBackOnDisk(TesseractFile tesseractFile, String filename) {
-        String folder = "src\\main\\resources\\tesseract";
+        String folder = "src\\main\\resources\\static\\img";
 
         byte[] bytes = null;
         try {
