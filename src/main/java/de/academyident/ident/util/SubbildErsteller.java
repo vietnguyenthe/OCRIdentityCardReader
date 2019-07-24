@@ -61,6 +61,26 @@ public class SubbildErsteller {
         }
     }
 
+
+    //Geburtsort gespeichert als Bild "geburtsort.jpg" im Ordner Tesseract
+    public void erstelleGeburtsort(String path) {
+        BufferedImage vorderseite = erhalteVorderseite(path);
+        try {
+            BufferedImage geburtsort = vorderseite.getSubimage(
+                    (int) (vorderseite.getWidth() * 0.42),
+                    (int) (vorderseite.getHeight() * 0.54),
+                    (int) (vorderseite.getWidth() * 0.5),
+                    (int) (vorderseite.getHeight() * 0.12));
+            File geburtsortBeispiel =
+                    new File("src\\main\\resources\\tesseract\\geburtsort.jpg");
+            ImageIO.write(geburtsort, "jpg", geburtsortBeispiel);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /*
     //AusweisID wird gespeichert als Bild "ausweisID.jpg" im Ordner Tesseract
     public void erstelleAusweisID(String path){
         BufferedImage vorderseite = erhalteVorderseite(path);
@@ -143,21 +163,5 @@ public class SubbildErsteller {
             e.printStackTrace();
         }
     }
-
-    //Geburtsort gespeichert als Bild "geburtsort.jpg" im Ordner Tesseract
-    public void erstelleGeburtsort(String path) {
-        BufferedImage vorderseite = erhalteVorderseite(path);
-        try {
-            BufferedImage geburtsort = vorderseite.getSubimage(
-                    (int) (vorderseite.getWidth() * 0.42),
-                    (int) (vorderseite.getHeight() * 0.54),
-                    (int) (vorderseite.getWidth() * 0.5),
-                    (int) (vorderseite.getHeight() * 0.12));
-            File geburtsortBeispiel =
-                    new File("src\\main\\resources\\tesseract\\geburtsort.jpg");
-            ImageIO.write(geburtsort, "jpg", geburtsortBeispiel);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+*/
 }
