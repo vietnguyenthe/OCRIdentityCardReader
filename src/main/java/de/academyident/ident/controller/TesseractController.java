@@ -95,7 +95,6 @@ public class TesseractController {
 //            e.printStackTrace();
 //        }
 //
-//
 //        RescaleOp op = new RescaleOp(1.2f, 0, null);
 //        bufferedImage = op.filter(bufferedImage, bufferedImage);
 //
