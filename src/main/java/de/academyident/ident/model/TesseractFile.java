@@ -6,8 +6,8 @@ import java.io.File;
 
 public class TesseractFile {
 
-    MultipartFile frontImage;
-    MultipartFile backImage;
+    MultipartFile frontImage = null;
+    MultipartFile backImage = null;
 
     public MultipartFile getFrontImage() {
         return frontImage;

@@ -29,6 +29,7 @@ public class TesseractController {
                                  @ModelAttribute("tessImage") TesseractFile tesseractFile,
                                  @ModelAttribute("neueDokumentDaten") Personendokument dokument){
 
+
         SaveFile.saveFrontOnDisk(tesseractFile, "\\Perso_Front.jpg");
         SaveFile.saveBackOnDisk(tesseractFile, "\\Perso_Back.jpg");
 
