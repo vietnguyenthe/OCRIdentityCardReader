@@ -32,10 +32,10 @@
 </div>
 <div class="container centerItem">
     <div class="row justify-content-center align-items-center">
-        <div class="col-lg-5">
-            <img class="img-responsive" src="../img/Perso_Front.jpg"
-                 alt="Perso Vorderseite"/>
-            <img class="img-responsive" src="../img/Perso_Back.jpg"
+        <div class="col-lg-5" >
+            <img class="img-responsive" th:src="${'../img/Perso_Back2d31c634-24ec-439d-a640-45d62a4bb5e6.jpg'}"
+                 th:alt="${tessImage.pathFrontImage}"/>
+            <img class="img-responsive" th:src="@{'../img/' + ${tessImage.pathBackImage}}"
                  alt="Perso Rückseite"/>
         </div>
         <div class="col-lg-5">

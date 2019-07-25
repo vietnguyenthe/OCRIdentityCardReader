@@ -8,43 +8,50 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.print.DocFlavor;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
-@SessionAttributes("neueDokumentDaten")
+@SessionAttributes("neueDokumentDaten"  )
 public class TesseractController {
 
+
+    private static final UUID idOne = UUID.randomUUID();
+    private static final UUID idTwo = UUID.randomUUID();
 
     @PostMapping(value = "/fileUpload")
     public String bearbeiteDaten(Model model,
                                  @ModelAttribute("tessImage") TesseractFile tesseractFile,
                                  @ModelAttribute("neueDokumentDaten") Personendokument dokument){
 
-        SaveFile.saveFrontOnDisk(tesseractFile, "\\Perso_Front.jpg");
-        SaveFile.saveBackOnDisk(tesseractFile, "\\Perso_Back.jpg");
+        String frontID = idOne.toString();
+        String backID = idTwo.toString();
+
+        tesseractFile.setPathFrontImage("../img/Perso_Front" + frontID + ".jpg");
+        tesseractFile.setPathBackImage("Perso_Back" + backID + ".jpg");
+
+        SaveFile.saveFrontOnDisk(tesseractFile, "\\Perso_Front" + frontID + ".jpg");
+        SaveFile.saveBackOnDisk(tesseractFile, "\\Perso_Back" + backID + ".jpg");
 
         SubbildErsteller subbildErsteller = new SubbildErsteller();
 
-        subbildErsteller.erstelleMaschinenlesbareZone("src\\main\\resources\\static\\img\\Perso_Back.jpg");
+        subbildErsteller.erstelleMaschinenlesbareZone("src\\main\\resources\\static\\img\\Perso_Back" + backID + ".jpg");
 
         String maschinenlesbareZone = TesseractIdent.leseTextaus(
                 new File("src\\main\\resources\\static\\img\\maschinenLesbareZone.jpg"));
 
-        subbildErsteller.erstelleAdresse("src\\main\\resources\\static\\img\\Perso_Back.jpg");
+        subbildErsteller.erstelleAdresse("src\\main\\resources\\static\\img\\Perso_Back" + backID + ".jpg");
 
         String adresse = TesseractIdent.leseTextaus(
                 new File("src\\main\\resources\\static\\img\\adresse.jpg"));
 
-        subbildErsteller.erstelleGeburtsort("src\\main\\resources\\static\\img\\Perso_Front.jpg");
+        subbildErsteller.erstelleGeburtsort("src\\main\\resources\\static\\img\\Perso_Front" + frontID + ".jpg");
 
         String geburtsort = TesseractIdent.leseTextaus(
                 new File("src\\main\\resources\\static\\img\\geburtsort.jpg"));
