@@ -39,7 +39,7 @@ public class SubbildErsteller {
                     (int) (rueckseite.getWidth()*0.4),
                     (int) (rueckseite.getHeight() * 0.3));
             File adresseBeispiel =
-                    new File("src\\main\\resources\\tesseract\\adresse.jpg");
+                    new File("src\\main\\resources\\static\\img\\adresse.jpg");
             ImageIO.write(adresse, "jpg", adresseBeispiel);
         } catch (IOException e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class SubbildErsteller {
             BufferedImage maschinenLesbareZone = rueckseite.getSubimage(0, (int) (rueckseite.getHeight() * 0.6),
                     rueckseite.getWidth(), (int) (rueckseite.getHeight() * 0.4));
             File maschinenLesbareZoneBeispiel =
-                    new File("src\\main\\resources\\tesseract\\maschinenLesbareZone.jpg");
+                    new File("src\\main\\resources\\static\\img\\maschinenLesbareZone.jpg");
             ImageIO.write(maschinenLesbareZone, "jpg", maschinenLesbareZoneBeispiel);
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,7 +72,7 @@ public class SubbildErsteller {
                     (int) (vorderseite.getWidth() * 0.5),
                     (int) (vorderseite.getHeight() * 0.12));
             File geburtsortBeispiel =
-                    new File("src\\main\\resources\\tesseract\\geburtsort.jpg");
+                    new File("src\\main\\resources\\static\\img\\geburtsort.jpg");
             ImageIO.write(geburtsort, "jpg", geburtsortBeispiel);
         } catch (IOException e) {
             e.printStackTrace();
