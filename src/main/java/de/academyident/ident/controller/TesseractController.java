@@ -48,6 +48,16 @@ public class TesseractController {
         model.addAttribute("targetFileName", "readImage/" + fileName);
 
 
+        MultipartFile frontImage = tesseractFile.getFrontImage();
+        String fileName2 = StringUtils.cleanPath(frontImage.getOriginalFilename());
+
+        InputStream inputStream2 = frontImage.getInputStream();
+        Files.copy(inputStream2, uploadFolder.resolve(fileName2), StandardCopyOption.REPLACE_EXISTING);
+
+        model.addAttribute("targetFileName2", "readImage/" + fileName2);
+
+
+
 //        tesseractFile.setPathFrontImage("../img/Perso_Front" + frontID + ".jpg");
 //        tesseractFile.setPathBackImage("Perso_Back" + backID + ".jpg");
 //
