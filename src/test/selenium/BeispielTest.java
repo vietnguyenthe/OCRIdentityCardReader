@@ -53,7 +53,7 @@ public class BeispielTest {
         // Scrollt die Seite runter
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("window.scrollBy(0,200)");
-        waitForAction(1.0);
+        waitForAction(2.0);
 
         WebElement startseite_vorname = driver.findElement(By.id("startseite_vorname"));
         startseite_vorname.sendKeys("Florian");
@@ -89,7 +89,7 @@ public class BeispielTest {
         startseite_echtheitsMerkmal.sendKeys("IDD"); // Notwendig für korrekte Validierung
 
         WebElement btnSubmit = driver.findElement(By.id("startseite_submit"));
-        waitForAction(2.0);
+        waitForAction(4.0);
         btnSubmit.click();
 
         // Pruefungsseite - Eingaben positiv bestätigen
@@ -99,7 +99,7 @@ public class BeispielTest {
 
         // Scrollt die Seite runter
         jse.executeScript("window.scrollBy(0,150)");
-        waitForAction(2.0);
+        waitForAction(4.0);
 
         btnBestaetigen.click();
         waitForAction(2.0);
@@ -399,5 +399,38 @@ public class BeispielTest {
         waitForAction(2.0);
     }
 
+    @Test
+    public void caseViet() {
+        driver.get("http://localhost:8080");
 
+
+        // Startseite - Formular öffnen und mit Text befüllen
+        WebElement btn = driver.findElement(By.id("startseite_InputOCR"));
+        waitForAction(2.0);
+        btn.click();
+        waitForAction(1.0);
+
+        WebElement file_vorn = driver.findElement(By.id("startseite_file_vorn"));
+        file_vorn.sendKeys("C:\\Users\\Viet\\Desktop\\ProjekteOrdner\\postident\\src\\main\\resources\\tesseract\\front.jpeg");
+
+        WebElement file_hinten = driver.findElement(By.id("startseite_file_hinten"));
+        file_hinten.sendKeys("C:\\Users\\Viet\\Desktop\\ProjekteOrdner\\postident\\src\\main\\resources\\tesseract\\back.jpeg");
+
+        WebElement btnSubmit = driver.findElement(By.id("startseite_tessInput"));
+        waitForAction(2.0);
+        btnSubmit.click();
+
+        // Pruefungsseite - Eingaben positiv bestätigen
+
+        WebElement btnBestaetigen = driver.findElement(By.id("pruefung_datenBestaetigen"));
+        waitForAction(2.0);
+
+        // Scrollt die Seite runter
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("window.scrollBy(0,150)");
+        waitForAction(2.0);
+
+        btnBestaetigen.click();
+        waitForAction(2.0);
+    }
 }
