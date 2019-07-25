@@ -3,17 +3,16 @@ package de.academyident.ident.controller;
 import de.academyident.ident.model.Personendokument;
 import de.academyident.ident.model.TesseractFile;
 import de.academyident.ident.util.*;
-import org.bytedeco.opencv.presets.opencv_core;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.print.DocFlavor;
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.*;
 import java.util.*;
 
@@ -21,57 +20,81 @@ import java.util.*;
 @SessionAttributes("neueDokumentDaten"  )
 public class TesseractController {
 
+    private static final String fileSeparator = System.getProperty("file.separator");
+    private Path uploadFolder;
 
-    private static final UUID idOne = UUID.randomUUID();
-    private static final UUID idTwo = UUID.randomUUID();
+    @PostConstruct
+    public void init() {
+        String path = System.getProperty("user.home") + fileSeparator + "uploads";
+        uploadFolder = Paths.get(path);
+        try {
+            Files.createDirectories(uploadFolder);
+        } catch (IOException e) {
+            throw new RuntimeException("Could not create uploads directory.", e);
+        }
+    }
 
     @PostMapping(value = "/fileUpload")
     public String bearbeiteDaten(Model model,
                                  @ModelAttribute("tessImage") TesseractFile tesseractFile,
-                                 @ModelAttribute("neueDokumentDaten") Personendokument dokument){
+                                 @ModelAttribute("neueDokumentDaten") Personendokument dokument) throws IOException {
 
-        String frontID = idOne.toString();
-        String backID = idTwo.toString();
+        MultipartFile backImage = tesseractFile.getBackImage();
+        String fileName = StringUtils.cleanPath(backImage.getOriginalFilename());
 
-        tesseractFile.setPathFrontImage("../img/Perso_Front" + frontID + ".jpg");
-        tesseractFile.setPathBackImage("Perso_Back" + backID + ".jpg");
+        InputStream inputStream = backImage.getInputStream();
+        Files.copy(inputStream, uploadFolder.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
 
-        SaveFile.saveFrontOnDisk(tesseractFile, "\\Perso_Front" + frontID + ".jpg");
-        SaveFile.saveBackOnDisk(tesseractFile, "\\Perso_Back" + backID + ".jpg");
-
-        SubbildErsteller subbildErsteller = new SubbildErsteller();
-
-        subbildErsteller.erstelleMaschinenlesbareZone("src\\main\\resources\\static\\img\\Perso_Back" + backID + ".jpg");
-
-        String maschinenlesbareZone = TesseractIdent.leseTextaus(
-                new File("src\\main\\resources\\static\\img\\maschinenLesbareZone.jpg"));
-
-        subbildErsteller.erstelleAdresse("src\\main\\resources\\static\\img\\Perso_Back" + backID + ".jpg");
-
-        String adresse = TesseractIdent.leseTextaus(
-                new File("src\\main\\resources\\static\\img\\adresse.jpg"));
-
-        subbildErsteller.erstelleGeburtsort("src\\main\\resources\\static\\img\\Perso_Front" + frontID + ".jpg");
-
-        String geburtsort = TesseractIdent.leseTextaus(
-                new File("src\\main\\resources\\static\\img\\geburtsort.jpg"));
+        model.addAttribute("targetFileName", "readImage/" + fileName);
 
 
-        DeutscherAusweisOCR deutscherAusweisOCR = new DeutscherAusweisOCR(maschinenlesbareZone, adresse, geburtsort);
-
-        HashMap<String, String> ergebnisMap = deutscherAusweisOCR.getResultMap();
-
-        ocrModelMapping(dokument, ergebnisMap);
-
-        List<String> dateien = new ArrayList<>(Arrays.asList("src\\main\\resources\\static\\img\\adresse.jpg",
-                                                             "src\\main\\resources\\static\\img\\geburtsort.jpg",
-                                                             "src\\main\\resources\\static\\img\\maschinenLesbareZone.jpg"));
-        LokaleBilddateien.loeschen(dateien);
+//        tesseractFile.setPathFrontImage("../img/Perso_Front" + frontID + ".jpg");
+//        tesseractFile.setPathBackImage("Perso_Back" + backID + ".jpg");
+//
+//        SaveFile.saveFrontOnDisk(tesseractFile, "\\Perso_Front" + frontID + ".jpg");
+//        SaveFile.saveBackOnDisk(tesseractFile, "\\Perso_Back" + backID + ".jpg");
+//
+//        SubbildErsteller subbildErsteller = new SubbildErsteller();
+//
+//        subbildErsteller.erstelleMaschinenlesbareZone("src\\main\\resources\\static\\img\\Perso_Back" + backID + ".jpg");
+//
+//        String maschinenlesbareZone = TesseractIdent.leseTextaus(
+//                new File("src\\main\\resources\\static\\img\\maschinenLesbareZone.jpg"));
+//
+//        subbildErsteller.erstelleAdresse("src\\main\\resources\\static\\img\\Perso_Back" + backID + ".jpg");
+//
+//        String adresse = TesseractIdent.leseTextaus(
+//                new File("src\\main\\resources\\static\\img\\adresse.jpg"));
+//
+//        subbildErsteller.erstelleGeburtsort("src\\main\\resources\\static\\img\\Perso_Front" + frontID + ".jpg");
+//
+//        String geburtsort = TesseractIdent.leseTextaus(
+//                new File("src\\main\\resources\\static\\img\\geburtsort.jpg"));
+//
+//
+//        DeutscherAusweisOCR deutscherAusweisOCR = new DeutscherAusweisOCR(maschinenlesbareZone, adresse, geburtsort);
+//
+//        HashMap<String, String> ergebnisMap = deutscherAusweisOCR.getResultMap();
+//
+//        ocrModelMapping(dokument, ergebnisMap);
+//
+//        List<String> dateien = new ArrayList<>(Arrays.asList("src\\main\\resources\\static\\img\\adresse.jpg",
+//                                                             "src\\main\\resources\\static\\img\\geburtsort.jpg",
+//                                                             "src\\main\\resources\\static\\img\\maschinenLesbareZone.jpg"));
+//        LokaleBilddateien.loeschen(dateien);
 
         return "pruefung";
     }
 
+    @GetMapping("/readImage/{imageName}")
+    @ResponseBody
+    public byte[] readImage(@PathVariable(value = "imageName") String imageName) throws IOException {
 
+        File file = new File(uploadFolder + fileSeparator + imageName);
+        byte[] bytes = Files.readAllBytes(file.toPath());
+
+        return bytes;
+    }
 
     private void ocrModelMapping(@ModelAttribute("neueDokumentDaten") Personendokument dokument, HashMap<String, String> ergebnisMap) {
         dokument.setNachname(ergebnisMap.get("nachname"));
