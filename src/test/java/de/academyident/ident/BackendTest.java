@@ -142,11 +142,29 @@ Test der Klasse SubbildErsteller
         subbildErsteller.erstelleGeburtsort("src\\main\\resources\\tesseract\\Muster_des_Personalausweises_VS.jpg");
         subbildErsteller.erstelleMaschinenlesbareZone("src\\main\\resources\\tesseract\\Muster_des_Personalausweises_RS.jpg");
         File adresse = new File("src\\main\\resources\\tesseract\\adresse.jpg");
-        Assert.assertNotNull(adresse);
+        Assert.assertTrue(adresse.canRead());
         File geburtsort = new File("src\\main\\resources\\tesseract\\geburtsort.jpg");
-        Assert.assertNotNull(geburtsort);
+        Assert.assertTrue(geburtsort.canRead());
         File mlz = new File("src\\main\\resources\\tesseract\\maschinenLesbareZone.jpg");
-        Assert.assertNotNull(mlz);
+        Assert.assertTrue(mlz.canRead());
+        List<String> dateien = new ArrayList<>(Arrays.asList("src\\main\\resources\\tesseract\\adresse.jpg",
+                "src\\main\\resources\\tesseract\\geburtsort.jpg",
+                "src\\main\\resources\\tesseract\\maschinenLesbareZone.jpg"));
+        LokaleBilddateien.loeschen(dateien);
+    }
+
+    @Test
+    public void testeErstellungSubbilderBilderFalscherPfad() {
+        SubbildErsteller subbildErsteller = new SubbildErsteller();
+        subbildErsteller.erstelleAdresse("src\\main\\resources\\tesseract\\Muster_des_Personalausweises_RS.jpg");
+        subbildErsteller.erstelleGeburtsort("src\\main\\resources\\tesseract\\Muster_des_Personalausweises_VS.jpg");
+        subbildErsteller.erstelleMaschinenlesbareZone("src\\main\\resources\\tesseract\\Muster_des_Personalausweises_RS.jpg");
+        File adresse = new File("src\\main\\resources\\tesseract\\nicht_vorhanden.jpg");
+        Assert.assertFalse(adresse.canRead());
+        File geburtsort = new File("src\\main\\resources\\tesseract\\nicht_vorhanden.jpg");
+        Assert.assertFalse(geburtsort.canRead());
+        File mlz = new File("src\\main\\resources\\tesseract\\nicht_vorhanden.jpg");
+        Assert.assertFalse(mlz.canRead());
         List<String> dateien = new ArrayList<>(Arrays.asList("src\\main\\resources\\tesseract\\adresse.jpg",
                 "src\\main\\resources\\tesseract\\geburtsort.jpg",
                 "src\\main\\resources\\tesseract\\maschinenLesbareZone.jpg"));
