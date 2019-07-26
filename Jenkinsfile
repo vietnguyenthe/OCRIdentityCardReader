@@ -21,5 +21,14 @@ pipeline {
                 sh 'mvn test'
             }
         }
+
+        stage('Deploy') {
+            agent {label 'master'}
+            steps {
+                sh 'docker build -f Dockerfile -t ident .'
+                sh 'docker run -p 8282:8282 ident &'
+
+            }
+        }
     }
 }
