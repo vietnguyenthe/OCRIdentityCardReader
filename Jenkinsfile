@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'maven: 4.0.0'
+                    image 'maven:3.3.3'
                 }
             }
 
