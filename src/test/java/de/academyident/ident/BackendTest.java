@@ -2,16 +2,14 @@ package de.academyident.ident;
 
 import de.academyident.ident.model.BundesDatenbank;
 import de.academyident.ident.model.Personendokument;
-import de.academyident.ident.util.SubbildErsteller;
-import de.academyident.ident.util.TesseractIdent;
-import de.academyident.ident.util.Validierung;
+import de.academyident.ident.ocr.SubbildErsteller;
+import de.academyident.ident.ocr.TesseractOCR;
+import de.academyident.ident.validation.Validierung;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import javax.validation.constraints.AssertFalse;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,13 +86,13 @@ Tests der Klasse TesseractIdent
     @Test
     public void leseTextAusRichtigerDateipfad() {
         File file = new File("src\\main\\resources\\tesseract\\Muster_des_Personalausweises_RS.jpg");
-        Assert.assertNotNull(TesseractIdent.leseTextaus(file));
+        Assert.assertNotNull(TesseractOCR.leseTextaus(file));
     }
 
     @Test
     public void leseTextAusFehlendenOderFehlerhaftenDateipfad() {
         File file = new File("src\\main\\resources\\tesseract\\Nicht_Vorhanden.jpg");
-        Assert.assertNull(TesseractIdent.leseTextaus(file));
+        Assert.assertNull(TesseractOCR.leseTextaus(file));
     }
 
 /*

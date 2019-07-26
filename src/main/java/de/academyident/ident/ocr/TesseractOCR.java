@@ -1,16 +1,15 @@
-package de.academyident.ident.util;
+package de.academyident.ident.ocr;
 
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class TesseractIdent {
+public class TesseractOCR {
 
     public static String leseTextaus(File file) {
 
-        Tesseract tesseract = new Tesseract();
+        net.sourceforge.tess4j.Tesseract tesseract = new net.sourceforge.tess4j.Tesseract();
         tesseract.setDatapath("src\\main\\resources\\tesseract");
 
 

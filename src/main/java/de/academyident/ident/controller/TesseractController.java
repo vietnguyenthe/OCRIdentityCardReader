@@ -2,7 +2,9 @@ package de.academyident.ident.controller;
 
 import de.academyident.ident.model.Personendokument;
 import de.academyident.ident.model.TesseractFile;
-import de.academyident.ident.util.*;
+import de.academyident.ident.ocr.ResultInterpreter;
+import de.academyident.ident.ocr.SubbildErsteller;
+import de.academyident.ident.ocr.TesseractOCR;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -72,23 +74,23 @@ public class TesseractController {
 
         subbildErsteller.erstelleMaschinenlesbareZone(backImagePath);
 
-        String maschinenlesbareZone = TesseractIdent.leseTextaus(
+        String maschinenlesbareZone = TesseractOCR.leseTextaus(
                 new File("src\\main\\resources\\static\\img\\maschinenLesbareZone.jpg"));
 
         subbildErsteller.erstelleAdresse(backImagePath);
 
-        String adresse = TesseractIdent.leseTextaus(
+        String adresse = TesseractOCR.leseTextaus(
                 new File("src\\main\\resources\\static\\img\\adresse.jpg"));
 
         subbildErsteller.erstelleGeburtsort(frontImagePath);
 
-        String geburtsort = TesseractIdent.leseTextaus(
+        String geburtsort = TesseractOCR.leseTextaus(
                 new File("src\\main\\resources\\static\\img\\geburtsort.jpg"));
 
 
-        DeutscherAusweisOCR deutscherAusweisOCR = new DeutscherAusweisOCR(maschinenlesbareZone, adresse, geburtsort);
+        ResultInterpreter resultInterpreter = new ResultInterpreter(maschinenlesbareZone, adresse, geburtsort);
 
-        HashMap<String, String> ergebnisMap = deutscherAusweisOCR.getResultMap();
+        HashMap<String, String> ergebnisMap = resultInterpreter.getResultMap();
 
         ocrModelMapping(dokument, ergebnisMap);
 

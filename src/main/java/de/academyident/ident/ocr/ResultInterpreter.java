@@ -1,4 +1,4 @@
-package de.academyident.ident.util;
+package de.academyident.ident.ocr;
 
 
 import java.util.ArrayList;
@@ -6,7 +6,28 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class DeutscherAusweisOCR {
+public class ResultInterpreter {
+
+    /*
+    * Plan
+    *   TODO: Constructor initializes the map with default values
+    *
+    *   TODO: Method for interpretMachineData PUBLIC String return
+    *   TODO: Method for interpretAdressData PUBLIC String return
+    *   TODO: Method for interpretAdressData PUBLIC String return
+    *   TODO: Method for all at one interpretAllData gives back the map wit overwritten defaults.
+    *
+    *   TODO: Cleanup helper functions
+    *   TODO: Validation of input as helper functions for those methods
+    *
+    *
+    *   Idea
+    *   Helper cleans up the input, validation checks for defined conditions (line count, is there a number), then
+    *   the interpreter actually runs over it.
+    *   Validation shall try to catch cases we miss in the cleanup.
+    *
+    * */
+
 
     private HashMap<String, String> resultMap = new HashMap<>();
 
@@ -22,7 +43,7 @@ public class DeutscherAusweisOCR {
     String strasse = "Unleserlich";
     String hausnummer = "00";
 
-    public DeutscherAusweisOCR(String maschinellerText, String adresseText, String geburtsortText) {
+    public ResultInterpreter(String maschinellerText, String adresseText, String geburtsortText) {
 
         // Maschineller Bereich, der für OCR optimiert ist (Schriftart, Abstände, Größe)
         maschBereichLinienTrennen(maschinellerText);

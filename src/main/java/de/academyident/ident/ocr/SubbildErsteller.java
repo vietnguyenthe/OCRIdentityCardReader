@@ -1,10 +1,9 @@
-package de.academyident.ident.util;
+package de.academyident.ident.ocr;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 
 public class SubbildErsteller {
 

@@ -1,4 +1,4 @@
-package de.academyident.ident.util;
+package de.academyident.ident.validation;
 
 import de.academyident.ident.model.BundesDatenbank;
 import de.academyident.ident.model.Personendokument;

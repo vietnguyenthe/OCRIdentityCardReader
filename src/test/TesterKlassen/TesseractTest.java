@@ -1,6 +1,6 @@
 package de.academyident.ident.TesterKlassen;
 
-import de.academyident.ident.util.DeutscherAusweisOCR;
+import de.academyident.ident.validation.DeutscherAusweisOCR;
 import net.sourceforge.tess4j.OCRResult;
 import net.sourceforge.tess4j.Tesseract;
 

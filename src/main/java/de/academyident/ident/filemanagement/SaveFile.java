@@ -1,4 +1,4 @@
-package de.academyident.ident.util;
+package de.academyident.ident.filemanagement;
 
 import de.academyident.ident.model.TesseractFile;
 
