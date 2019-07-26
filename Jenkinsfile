@@ -4,9 +4,15 @@ pipeline {
 
     stages {
 
-        stage('Test') {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'maven: 3.3.3'
+                }
+            }
+
             steps {
-                echo 'test'
+                sh 'mvn --version'
             }
         }
     }
