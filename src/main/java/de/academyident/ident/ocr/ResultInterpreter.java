@@ -8,28 +8,7 @@ import java.util.List;
 
 public class ResultInterpreter {
 
-    /*
-    * Plan
-    *   TODO: Constructor initializes the map with default values
-    *
-    *   TODO: Method for interpretMachineData PUBLIC String return
-    *   TODO: Method for interpretAdressData PUBLIC String return
-    *   TODO: Method for interpretAdressData PUBLIC String return
-    *   TODO: Method for all at one interpretAllData gives back the map wit overwritten defaults.
-    *
-    *   TODO: Cleanup helper functions
-    *   TODO: Validation of input as helper functions for those methods
-    *
-    *
-    *   Idea
-    *   Helper cleans up the input, validation checks for defined conditions (line count, is there a number), then
-    *   the interpreter actually runs over it.
-    *   Validation shall try to catch cases we miss in the cleanup.
-    *
-    * */
-
-
-    private HashMap<String, String> resultMap = new HashMap<>();
+       private HashMap<String, String> resultMap = new HashMap<>();
 
     private String firstLine;
     private String secondLine;
@@ -238,3 +217,24 @@ public class ResultInterpreter {
         return resultMap;
     }
 }
+
+
+/*
+ * Plan
+ *   TODO: Constructor initializes the map with default values
+ *
+ *   TODO: Method for interpretMachineData PUBLIC String return
+ *   TODO: Method for interpretAdressData PUBLIC String return
+ *   TODO: Method for interpretAdressData PUBLIC String return
+ *   TODO: Method for all at one interpretAllData gives back the map wit overwritten defaults.
+ *
+ *   TODO: Cleanup helper functions
+ *   TODO: Validation of input as helper functions for those methods
+ *
+ *
+ *   Idea
+ *   Helper cleans up the input, validation checks for defined conditions (line count, is there a number), then
+ *   the interpreter actually runs over it.
+ *   Validation shall try to catch cases we miss in the cleanup.
+ *
+ * */

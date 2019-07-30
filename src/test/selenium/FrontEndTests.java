@@ -316,10 +316,10 @@ public class FrontEndTests {
         waitForAction(1.0);
 
         WebElement file_vorn = driver.findElement(By.id("startseite_file_vorn"));
-        file_vorn.sendKeys("C:\\Users\\Viet\\Desktop\\ProjekteOrdner\\postident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_VS.jpg");
+        file_vorn.sendKeys("D:\\Academic Work Academy\\Week7\\Projects\\ident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_VS.jpg");
 
         WebElement file_hinten = driver.findElement(By.id("startseite_file_hinten"));
-        file_hinten.sendKeys("C:\\Users\\Viet\\Desktop\\ProjekteOrdner\\postident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_RS.jpg");
+        file_hinten.sendKeys("D:\\Academic Work Academy\\Week7\\Projects\\ident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_RS.jpg");
 
         WebElement btnSubmit = driver.findElement(By.id("startseite_tessInput"));
         waitForAction(2.0);
@@ -351,10 +351,10 @@ public class FrontEndTests {
         waitForAction(1.0);
 
         WebElement file_vorn = driver.findElement(By.id("startseite_file_vorn"));
-        file_vorn.sendKeys("C:\\Users\\Viet\\Desktop\\ProjekteOrdner\\postident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_VS.jpg");
+        file_vorn.sendKeys("D:\\Academic Work Academy\\Week7\\Projects\\ident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_VS.jpg");
 
         WebElement file_hinten = driver.findElement(By.id("startseite_file_hinten"));
-        file_hinten.sendKeys("C:\\Users\\Viet\\Desktop\\ProjekteOrdner\\postident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_RS.jpg");
+        file_hinten.sendKeys("D:\\Academic Work Academy\\Week7\\Projects\\ident\\src\\main\\resources\\tesseract\\Muster_des_Personalausweises_RS.jpg");
 
         WebElement btnSubmit = driver.findElement(By.id("startseite_tessInput"));
         waitForAction(2.0);
