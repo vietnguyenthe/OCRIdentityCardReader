@@ -20,6 +20,7 @@ public class IdentApplication {
 
     @PostConstruct
     public void ausfuellenDB(){
+
         BundesDatenbank florianWeiss = new BundesDatenbank("Florian", "Weiß","blabla",
         2, 11111, "Koeln", "deutsch", "00000", "13.01.1990",
                 "Hamburg");

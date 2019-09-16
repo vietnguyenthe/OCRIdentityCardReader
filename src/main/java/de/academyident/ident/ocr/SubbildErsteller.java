@@ -7,7 +7,6 @@ import java.io.IOException;
 
 public class SubbildErsteller {
 
-
     public BufferedImage erhalteRueckseite(String path) {
         BufferedImage rueckseite = null;
         try {
@@ -17,6 +16,7 @@ public class SubbildErsteller {
         }
         return rueckseite;
     }
+
 
     public BufferedImage erhalteVorderseite(String path) {
         BufferedImage vorderseite = null;
@@ -43,6 +43,7 @@ public class SubbildErsteller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 

@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @SessionAttributes("neueDokumentDaten")
-public class IdentController {
+public class
+IdentController {
 
     @Autowired
     private PersonendokumentRepo personendokumentRepo;
